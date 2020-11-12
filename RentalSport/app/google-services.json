@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "187839749212",
+    "firebase_url": "https://rentalsport-95bd3.firebaseio.com",
+    "project_id": "rentalsport-95bd3",
+    "storage_bucket": "rentalsport-95bd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187839749212:android:6c0de27b69628cbf7b5a99",
+        "android_client_info": {
+          "package_name": "com.iesmaestredecalatrava.rentalsport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187839749212-cfa8trb2ehi5863sf098nkcqu41m97ak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iesmaestredecalatrava.rentalsport",
+            "certificate_hash": "1752d653bbabd50cac7a937d392fd7df4fb49e3f"
+          }
+        },
+        {
+          "client_id": "187839749212-roe3u4qlrqgk6pf6aplnlc7o1l4gnrvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOhwxg3N1jR08oeJRuuBzZ8KCz_x-u0OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187839749212-roe3u4qlrqgk6pf6aplnlc7o1l4gnrvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

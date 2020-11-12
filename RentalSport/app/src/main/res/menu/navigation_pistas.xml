@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/opcJueves"
+        android:title="JUEVES"
+        android:icon="@drawable/ic_j"
+        android:iconTint="#FFFFFF"></item>
+
+    <item
+        android:id="@+id/opcViernes"
+        android:title="VIERNES"
+        android:icon="@drawable/ic_v"
+        android:iconTint="#FFFFFF"></item>
+
+    <item
+        android:id="@+id/opcSabado"
+        android:title="SÁBADO"
+        android:icon="@drawable/ic_s"
+        android:iconTint="#FFFFFF"></item>
+
+    <item
+        android:id="@+id/opcDomingo"
+        android:title="DOMINGO"
+        android:icon="@drawable/ic_d"
+        android:iconTint="#FFFFFF"
+        ></item>
+
+
+
+</menu>

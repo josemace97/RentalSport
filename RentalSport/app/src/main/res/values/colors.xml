@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FF7C00</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#33ff71</color>
+    <color name="colorFabCheck">#369106</color>
+    <color name="colorFabCancel">#F81313</color>
+    <color name="colorButtons">#FF7C00</color>
+    <color name="circulomorado">#7C4DFF</color>
+    <color name="blue">#33FFFC</color>
+    <color name="green">#33ff71</color>
+    <color name="white">#FFFFFF</color>
+</resources>
