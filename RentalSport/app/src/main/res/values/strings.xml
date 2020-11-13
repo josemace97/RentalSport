@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">RentalSport</string>
+    <string name="ic_fabCheckRegistro">ic_check</string>
+    <string name="ic_fabCancelRegistro">ic_cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_bottom_navigation_pistas">BottomNavigationPistas</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="google_maps_key">AIzaSyBIBRdV961aFy1imu1AshuWZN1Dc2QCmdY</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="nombre_pista">nombre_pista</string>
+    <string name="pista_reserva">pista_reserva</string>
+    <string name="hora_inicio">Hora inicio</string>
+    <string name="hora_fin">Hora fin</string>
+    <string name="precio">precio</string>
+    <string name="fechareserva">Fecha reserva</string>
+    <string name="nombre_app">RentalSport</string>
+    <string name="programador">José Manuel Costoso Escobar</string>
+    <string name="contacto">josemace97@gmail.com</string>
+    <string name="version">1.0</string>
+    <string name="titulo_codigo">Código fuente</string>
+    <string name="organización">IES Maestre de Calatrava</string>
+    <string name="titulo_programador">Programado por:</string>
+    <string name="titulo_version">Versión:</string>
+    <string name="titulo_contacto">Contacto:</string>
+    <string name="titulo_organizacion">Organización: </string>
+    <string name="input_latitud">Introduce la latitud: </string>
+    <string name="input_longitud">Introduce la longitud: </string>
+    <string name="fecha_reserva">fecha_reserva</string>
+    <string name="alquiler_padel_sin_luz">- Alquiler 1 h sin luz artificial 4 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_padel_con_luz">- Alquiler 1 h con luz artificial 5,50 euros - 1/2 adicional 2,50 euros</string>
+    <string name="alquiler_tenis__sin_luz">- Alquiler 1 h sin luz artificial 1,80 euros - 1/2 adicional 0,70 euros</string>
+    <string name="alquiler_tenis_con_luz">- Alquiler 1 h con luz artificial 2,50 euros - 1/2 adicional 1 euro</string>
+    <string name="alquiler_baloncesto_sin_luz"> Alquiler 1 h sin luz artificial 4 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_baloncesto_con_luz"> Alquiler 1 h sin luz artificial 5,50 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_pabellon_sin_luz">- Alquiler 1 h sin luz artificial 10 euros - 1/2 adicional 5 euros</string>
+    <string name="alquiler_pabellon_con_luz">- Alquiler 1 h con luz artificial 13 euros - 1/2 adicional 6,50 euros</string>
+</resources>

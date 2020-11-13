@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+            <item android:id="@+id/usuarios"
+                android:title="Usuarios"
+                android:icon="@drawable/ic_organizacion"
+                android:iconTint="#000000">
+
+            </item>
+
+           <item android:id="@+id/pistas"
+                android:title="Pistas"
+                android:icon="@drawable/ic_pistas"
+                android:iconTint="#000000">
+
+            </item>
+
+            <item android:id="@+id/reservas"
+                android:title="Reservas"
+                android:icon="@drawable/ic_reservas"
+                android:iconTint="#000000">
+
+            </item>
+
+
+
+</menu>
