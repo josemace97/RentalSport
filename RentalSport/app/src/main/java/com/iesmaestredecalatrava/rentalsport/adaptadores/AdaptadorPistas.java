@@ -58,6 +58,8 @@ implements View.OnClickListener{
         Bitmap bitmap=BitmapFactory.decodeByteArray(imagenPista,0,imagenPista.length);
         holder.foto.setImageBitmap(bitmap);
 
+        holder.iconoIzqu.setImageResource(R.drawable.ic_chevron_left);
+
     }
 
     @Override
@@ -86,7 +88,7 @@ implements View.OnClickListener{
     implements View.OnCreateContextMenuListener{
 
         TextView nombre;
-        ImageView foto;
+        ImageView foto,iconoIzqu;
 
         CardView cardView;
 
@@ -94,6 +96,7 @@ implements View.OnClickListener{
             super(itemView);
             nombre= itemView.findViewById(R.id.idNombre);
             foto=itemView.findViewById(R.id.idImagen);
+            iconoIzqu=itemView.findViewById(R.id.imgIzq);
 
             cardView=itemView.findViewById(R.id.cardPistas);
 

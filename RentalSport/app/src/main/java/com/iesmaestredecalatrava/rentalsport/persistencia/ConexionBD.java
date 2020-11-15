@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -12,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.SQLException;
 
 public class ConexionBD extends SQLiteOpenHelper {
 
@@ -29,10 +27,11 @@ public class ConexionBD extends SQLiteOpenHelper {
         File dbfile = new File(myPath);
         if (dbfile.exists()) {
 
+
         } else {
             try {
                 createDataBase();
-                Toast.makeText(context,"Crreando",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Creando base de datos",Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }

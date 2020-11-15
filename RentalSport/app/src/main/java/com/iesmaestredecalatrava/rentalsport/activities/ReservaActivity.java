@@ -93,7 +93,7 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
         telefono.setText(tlf);
         horaInicio.setText(horainicio+" hrs");
         horaFin.setText(horafin+" hrs");
-        precio.setText(precioReserva+" euros");
+        precio.setText(precioReserva+"0 euros");
 
     }
 
@@ -157,7 +157,7 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
 
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
-        Cursor c=sqLiteDatabase.rawQuery("SELECT H.PRECIO FROM HORARIOS H,PISTAS P WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"'",null);
+        Cursor c=sqLiteDatabase.rawQuery("SELECT printf('%.2f',H.PRECIO) FROM HORARIOS H,PISTAS P WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"'",null);
 
         while (c.moveToNext()){
 
@@ -182,6 +182,15 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
 
             id=c.getInt(0);
         }
+
+        SharedPreferences sharedPreferences=getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("hora_inicio",horainicio);
+        editor.putString("hora_fin",horafin);
+
+        editor.commit();
+
 
         return id;
     }

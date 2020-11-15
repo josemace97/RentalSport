@@ -50,9 +50,9 @@ public class AdaptadorReservas extends RecyclerView.Adapter<AdaptadorReservas.Vi
 
         Bitmap bitmap=BitmapFactory.decodeByteArray(imagenPista,0,imagenPista.length);
         holder.foto.setImageBitmap(bitmap);
-        holder.infoReserva.setImageResource(R.drawable.ic_info);
+        holder.iconoIzq.setImageResource(R.drawable.ic_chevron_left);
 
-        viewHolderReservas.infoReserva.setOnClickListener(new View.OnClickListener() {
+        /*viewHolderReservas.infoReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -63,7 +63,7 @@ public class AdaptadorReservas extends RecyclerView.Adapter<AdaptadorReservas.Vi
 
                 viewHolderReservas.infoReserva.getContext().startActivity(i);
             }
-        });
+        });*/
 
     }
 
@@ -79,7 +79,7 @@ public class AdaptadorReservas extends RecyclerView.Adapter<AdaptadorReservas.Vi
     public class ViewHolderReservas extends RecyclerView.ViewHolder {
 
         TextView nombre;
-        ImageView foto,infoReserva;
+        ImageView foto,iconoIzq;
         CardView cardView;
 
         public ViewHolderReservas(@NonNull View itemView) {
@@ -87,7 +87,7 @@ public class AdaptadorReservas extends RecyclerView.Adapter<AdaptadorReservas.Vi
 
             nombre= itemView.findViewById(R.id.txtNombrePista);
             foto=itemView.findViewById(R.id.idImagen);
-            infoReserva=itemView.findViewById(R.id.imgInfoReserva);
+            iconoIzq=itemView.findViewById(R.id.imgIzq);
 
             cardView=itemView.findViewById(R.id.cardPistas);
         }

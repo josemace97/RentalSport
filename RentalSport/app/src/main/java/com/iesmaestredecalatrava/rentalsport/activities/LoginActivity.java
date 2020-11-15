@@ -54,7 +54,8 @@ public class LoginActivity extends AppCompatActivity{
 
         progressDialog=new ProgressDialog(this);
 
-       conexionBD=new ConexionBD(this);
+        conexionBD=new ConexionBD(this);
+
 
         try {
             conexionBD.openDataBase();
@@ -94,45 +95,45 @@ public class LoginActivity extends AppCompatActivity{
 
             Toast.makeText(this,"Debes introducir la contraseña",Toast.LENGTH_SHORT).show();
 
-        }else if(txtEmail.getText().toString().equals("admin@gmail.com")
-        && txtPass.getText().toString().equals("1234")){
-
-          intent=new Intent(this,DrawerAdmin.class);
-          startActivity(intent);
-
-        } else{
+        }else{
 
             email=txtEmail.getText().toString();
             pass=txtPass.getText().toString();
 
-            Toast.makeText(this,"Email introducido: "+email,Toast.LENGTH_SHORT).show();
+            if(esAdmin()){
 
-            comprobarUsuario();
+                intent=new Intent(this,DrawerAdmin.class);
+                startActivity(intent);
 
-            progressDialog.setMessage("Cargando...");
-            progressDialog.show();
+            }else{
 
-            fireBaseAuth.signInWithEmailAndPassword(email,pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                comprobarUsuario();
 
-                            if(task.isSuccessful()){
+                progressDialog.setMessage("Cargando...");
+                progressDialog.show();
 
-                                guardarCredenciales();
+                fireBaseAuth.signInWithEmailAndPassword(email,pass)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                intent=new Intent(LoginActivity.this,MainActivity.class);
-                                startActivity(intent);
+                                if(task.isSuccessful()){
 
-                            }else {
+                                    guardarCredenciales();
+
+                                    intent=new Intent(LoginActivity.this,MainActivity.class);
+                                    startActivity(intent);
+
+                                }else {
 
                                     Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
 
-                            }
+                                }
 
-                            progressDialog.dismiss();
-                        }
-                    });
+                                progressDialog.dismiss();
+                            }
+                        });
+            }
 
         }
 
@@ -153,6 +154,8 @@ public class LoginActivity extends AppCompatActivity{
 
 
     }
+
+
 
     private int getId(){
 
@@ -185,6 +188,28 @@ public class LoginActivity extends AppCompatActivity{
         editor.commit();
     }
 
+    private boolean esAdmin(){
+
+        boolean esAdmin=false;
+        String codigo="";
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor c=sqLiteDatabase.rawQuery("SELECT ES_ADMIN FROM USUARIOS WHERE EMAIL='"+email+"' AND PASSWORD='"+pass+"'",null);
+
+        while (c.moveToNext()){
+
+            codigo=c.getString(0);
+
+        }
+
+        if(codigo.equals("S")){
+
+            esAdmin=true;
+        }
+
+        return esAdmin;
+    }
 
 
 }

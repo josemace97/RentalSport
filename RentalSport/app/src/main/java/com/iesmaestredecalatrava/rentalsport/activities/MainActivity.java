@@ -15,10 +15,13 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -26,6 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.iesmaestredecalatrava.rentalsport.R;
+import com.iesmaestredecalatrava.rentalsport.constantes.Constantes;
 import com.iesmaestredecalatrava.rentalsport.fragments.MapaFragment;
 
 import java.util.ArrayList;
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     CardView cardPistas, cardPerfil, cardPrecios, cardAcercaDe, cardCalendario;
     Cursor c;
+
+    EditText programador,organizacion,version;
+    TextView contacto,codigoFuente;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.acercade:
 
-                i = new Intent(this, AcercaDeActivity.class);
-                startActivity(i);
+               mostrarAlertDialog();
 
                 break;
 
@@ -117,6 +124,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*Toast.makeText(this,"Id: "+id+",email: "+email,Toast.LENGTH_SHORT).show();*/
     /*}*/
 
+    private void mostrarAlertDialog(){
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        View v= getLayoutInflater().inflate(R.layout.activity_acerca_de,null);
+
+        programador=v.findViewById(R.id.edProgramador);
+        contacto=v.findViewById(R.id.edContacto);
+        version=v.findViewById(R.id.edVersion);
+        codigoFuente=v.findViewById(R.id.edCodigoFuente);
+        organizacion=v.findViewById(R.id.edOrganizacion);
+        imageView=v.findViewById(R.id.imgIcono);
+
+        imageView.setImageResource(R.drawable.iconoapp);
+        programador.setText("Programado por: José Manuel Costoso Escobar");
+        contacto.setText("josemace97@gmail.com");
+        version.setText("Versión: 1.0");
+        codigoFuente.setText("https://github.com/josemace97/RentalSport");
+        organizacion.setText("Orgzanización:I.E.S Maestre de Calatrava");
+
+        contacto.setOnClickListener(this);
+        codigoFuente.setOnClickListener(this);
+
+        builder.setView(v);
+        final AlertDialog dialog = builder.create();
+        dialog.setTitle("RentalSport");
+        dialog.show();
+
+        codigoFuente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent  intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/josemace97/RentalSport"));
+                startActivity(intent);
+            }
+        });
+
+        contacto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent email=new Intent(Intent.ACTION_SEND);
+                email.setData(Uri.parse("mailto:"));
+                email.setType("text/plain");
+                email.putExtra(Intent.EXTRA_EMAIL,new String[]{contacto.getText().toString()});
+
+                startActivity(Intent.createChooser(email,"Envíar Gmail: "));
+            }
+        });
+
+    }
 
 
     @Override

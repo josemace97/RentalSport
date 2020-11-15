@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
+import com.iesmaestredecalatrava.rentalsport.fragments.ListaReservasFragment;
 import com.iesmaestredecalatrava.rentalsport.fragments.ListaUsuariosFragment;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
     private Map<Integer, List<MyButton>> botonBuffer;
     private Queue<Integer> removeQueue;
     private ListaUsuariosFragment listaUsuariosFragment;
+    private ListaReservasFragment listaReservasFragment;
     private static boolean esFragment;
 
     private GestureDetector.SimpleOnGestureListener listener=new GestureDetector.SimpleOnGestureListener(){
@@ -70,22 +72,28 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             Point point=new Point((int)motionEvent.getRawX(),(int)motionEvent.getRawY());
 
             RecyclerView.ViewHolder swipeViewHolder=recyclerView.findViewHolderForAdapterPosition(posicion);
-            View swipedItem=swipeViewHolder.itemView;
 
-            Rect rect=new Rect();
-            swipedItem.getGlobalVisibleRect(rect);
+            if(swipeViewHolder!=null){
 
-            if(motionEvent.getAction()==MotionEvent.ACTION_DOWN ||
-                    motionEvent.getAction()==MotionEvent.ACTION_UP ||
-                    motionEvent.getAction() == MotionEvent.ACTION_MOVE)
-            {
-                if(rect.top<point.y && rect.bottom>point.y)
-                    detector.onTouchEvent(motionEvent);
-                else{
+                View swipedItem=swipeViewHolder.itemView;
 
-                    removeQueue.add(posicion);
-                    posicion=-1;
-                    recoverSwipedItem();
+
+
+                Rect rect=new Rect();
+                swipedItem.getGlobalVisibleRect(rect);
+
+                if(motionEvent.getAction()==MotionEvent.ACTION_DOWN ||
+                        motionEvent.getAction()==MotionEvent.ACTION_UP ||
+                        motionEvent.getAction() == MotionEvent.ACTION_MOVE)
+                {
+                    if(rect.top<point.y && rect.bottom>point.y)
+                        detector.onTouchEvent(motionEvent);
+                    else{
+
+                        removeQueue.add(posicion);
+                        posicion=-1;
+                        recoverSwipedItem();
+                    }
                 }
             }
 
@@ -147,6 +155,7 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
         private Context context;
         private Resources recursos;
         private ListaUsuariosFragment listaUsuariosFragment;
+        private ListaReservasFragment listaReservasFragment;
 
         public MyButton(Context context,String texto,int tamanioTexto,int imagenId,int color,ButtomClickListener listener) {
             this.texto = texto;
@@ -167,6 +176,17 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             this.listener = listener;
             this.listaUsuariosFragment = listaUsuariosFragment;
             this.recursos = listaUsuariosFragment.getResources();
+        }
+
+        public MyButton(ListaReservasFragment listaReservasFragment, String texto, int tamanioTexto, int ic_delete, int color, ButtomClickListener listener) {
+
+            this.texto = texto;
+            this.imagenId = ic_delete;
+            this.tamanioTexto = tamanioTexto;
+            this.color = color;
+            this.listener = listener;
+            this.listaReservasFragment = listaReservasFragment;
+            this.recursos = listaReservasFragment.getResources();
         }
 
         public boolean onClick(float x,float y){
@@ -207,11 +227,24 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
 
             else if(esFragment){
 
+                if(listaUsuariosFragment instanceof ListaUsuariosFragment){
+
+                    Drawable d= ContextCompat.getDrawable(listaUsuariosFragment.getContext(),imagenId);
+                    Bitmap bitmap=drawableToBipmap(d);
+                    c.drawBitmap(bitmap,(rectF.left+rectF.right)/2,(rectF.top+rectF.bottom)/2,paint);
+
+                }else if(listaReservasFragment instanceof ListaReservasFragment){
+
+                    Drawable d= ContextCompat.getDrawable(listaReservasFragment.getContext(),imagenId);
+                    Bitmap bitmap=drawableToBipmap(d);
+                    c.drawBitmap(bitmap,(rectF.left+rectF.right)/2,(rectF.top+rectF.bottom)/2,paint);
+
+                }else{
 
 
-                Drawable d= ContextCompat.getDrawable(listaUsuariosFragment.getContext(),imagenId);
-                Bitmap bitmap=drawableToBipmap(d);
-                c.drawBitmap(bitmap,(rectF.left+rectF.right)/2,(rectF.top+rectF.bottom)/2,paint);
+                }
+
+
 
             }else{
 

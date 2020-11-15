@@ -31,13 +31,13 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imgInfoReserva"
+            android:id="@+id/imgIzq"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="65dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/ic_info" />
+            app:srcCompat="@drawable/ic_chevron_left" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

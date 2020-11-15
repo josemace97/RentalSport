@@ -8,7 +8,7 @@
 
     <Gallery
         android:id="@+id/gallery"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:spacing="8dp"
         android:background="#33FF71"
@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/seleccionada"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/gallery"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />

@@ -57,9 +57,7 @@ public class Galeria extends AppCompatActivity {
 
         gallery = (Gallery) findViewById(R.id.gallery);
         gallery.setAdapter(new AdaptadorGaleria(this, imagenesPista));
-        //al seleccionar una imagen, la mostramos en el centro de la pantalla a mayor tamaño
-
-        //con este listener, sólo se mostrarían las imágenes sobre las que se pulsa
+        //al
         gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 imagenSeleccionada.setImageBitmap(imagenesPista[position]);
@@ -67,11 +65,13 @@ public class Galeria extends AppCompatActivity {
 
         });
 
-        /*gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView parent, View v, int position, long id) {
                 imagenSeleccionada.setImageBitmap(imagenesPista[position]);
+                imagenSeleccionada.setMaxHeight(300);
+                imagenSeleccionada.setMaxWidth(500);
             }
 
             @Override
@@ -79,7 +79,7 @@ public class Galeria extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
             }
-        });*/
+        });
 
     }
 
@@ -96,7 +96,7 @@ public class Galeria extends AppCompatActivity {
         Cursor c = sqLiteDatabase.rawQuery("SELECT F.FOTO\n" +
                 "FROM PISTAS P,GALERIA_PISTA GP,FOTOS F\n" +
                 "WHERE F.ID=GP.FOTO AND P.ID=GP.PISTA\n" +
-                "AND P.NOMBRE='" + nombrePista + "';", null);
+                "AND P.NOMBRE='"+nombrePista+"';", null);
 
         if (c == null) {
 

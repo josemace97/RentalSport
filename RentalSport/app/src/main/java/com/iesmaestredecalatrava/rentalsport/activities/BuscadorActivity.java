@@ -36,7 +36,7 @@ public class BuscadorActivity extends AppCompatActivity {
     private ImageButton buscadorFecha;
     private boolean pulsado;
     private Bundle bundle;
-    private String nombrePista,date;
+    private String nombrePista, date;
     private DatePickerDialog.OnDateSetListener setListener;
 
     private Intent i;
@@ -46,21 +46,21 @@ public class BuscadorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscador);
 
-        pulsado=false;
+        pulsado = false;
 
-        bundle=this.getIntent().getExtras();
+        bundle = this.getIntent().getExtras();
 
-        nombrePista=bundle.getString("nombrePista");
+        nombrePista = bundle.getString("nombrePista");
 
 
-        bundle=new Bundle();
+        bundle = new Bundle();
 
-        bundle.putString("nombrePista",nombrePista);
+        bundle.putString("nombrePista", nombrePista);
 
-        toolbar=(Toolbar)findViewById(R.id.toolbar);
-        fecha=findViewById(R.id.fechaToolbar);
-        calendario=findViewById(R.id.calendario);
-        buscadorFecha=findViewById(R.id.buscador);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        fecha = findViewById(R.id.fechaToolbar);
+        calendario = findViewById(R.id.datepicker);
+        buscadorFecha = findViewById(R.id.buscador);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -70,54 +70,28 @@ public class BuscadorActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
-
-        /*calendario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Calendar c = Calendar.getInstance();
-
-                final int year = c.get(Calendar.YEAR);
-                final int month = c.get(Calendar.MONTH);
-                final int day = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog=new DatePickerDialog(BuscadorActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,setListener,year,month,day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        setListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                fecha.setText(date);
-            }
-        };*/
 
 
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
 
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem menuItem){
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
 
-            case R.id.calendario:
+            case R.id.datepicker:
 
-                pulsado=true;
+                pulsado = true;
 
                 mostrarDatePicker();
 
@@ -125,21 +99,22 @@ public class BuscadorActivity extends AppCompatActivity {
 
             case R.id.buscador:
 
-                 if(!pulsado){
+                if (!pulsado) {
 
-                     Toast.makeText(this,"Debes seleccionar una fecha",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Debes seleccionar una fecha", Toast.LENGTH_SHORT).show();
 
-                 }else{
+                } else {
 
-                     Intent i=new Intent(this,ListadoHorariosActivity.class);
-                     i.putExtras(bundle);
-                     startActivity(i);
-                 }
+                    Intent i = new Intent(this, ListadoHorariosActivity.class);
+                    i.putExtras(bundle);
+                    startActivity(i);
+                }
 
 
         }
         return true;
     }
+
 
     private void mostrarDatePicker(){
 
@@ -155,39 +130,37 @@ public class BuscadorActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        setListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                setListener=new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                if(dayOfMonth<10){
+                        if(dayOfMonth<10){
 
-                    date = "0"+dayOfMonth + "/" + (month + 1) + "/" + year;
-                    fecha.setText(date);
-                    bundle.putString("fecha_reserva",date);
+                            date = "0"+dayOfMonth + "/" + (month + 1) + "/" + year;
+                            fecha.setText(date);
+                            bundle.putString("fecha_reserva",date);
 
-                }else if(month<10){
+                        }else if(month<10){
 
-                    date = dayOfMonth + "/" +"0"+(month + 1)+ "/" + year;
-                    fecha.setText(date);
-                    bundle.putString("fecha_reserva",date);
+                            date = dayOfMonth + "/" +"0"+(month + 1)+ "/" + year;
+                            fecha.setText(date);
+                            bundle.putString("fecha_reserva",date);
 
-                }else if(dayOfMonth<10 && month<10){
+                        }else if(dayOfMonth<10 && month<10){
 
-                    date = "0"+dayOfMonth + "/" +"0"+(month + 1)+ "/" + year;
-                    fecha.setText(date);
-                    bundle.putString("fecha_reserva",date);
+                            date = "0"+dayOfMonth + "/" +"0"+(month + 1)+ "/" + year;
+                            fecha.setText(date);
+                            bundle.putString("fecha_reserva",date);
 
-                } else{
+                        } else{
 
-                    date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                    fecha.setText(date);
-                    bundle.putString("fecha_reserva",date);
-                }
+                            date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                            fecha.setText(date);
+                            bundle.putString("fecha_reserva",date);
+                        }
 
-            }
-        };
-
-
-    }
-
+                    }
+                };
+       }
 }
+

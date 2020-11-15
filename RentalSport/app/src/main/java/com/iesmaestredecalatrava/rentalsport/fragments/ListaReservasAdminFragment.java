@@ -90,7 +90,6 @@ public class ListaReservasAdminFragment extends Fragment {
         recyclerReservas=view.findViewById(R.id.fragmentRecyclerReservasAdmin);
         listaReservas=new ArrayList<>();
         recyclerReservas.setLayoutManager(new LinearLayoutManager(getContext()));
-        conexionBD=new ConexionBD(getContext(),"bd_rentalsport",null,2);
         bundle=new Bundle();
 
         adaptadorReservas=new AdaptadorReservasAdmin(listaReservas);

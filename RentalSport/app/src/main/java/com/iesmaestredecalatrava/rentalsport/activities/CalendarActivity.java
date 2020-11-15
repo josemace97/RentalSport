@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,11 +43,13 @@ public class CalendarActivity extends AppCompatActivity {
     private ConexionBD conexionBD;
     private Date date;
     private MCalendarView calendarView;
+    private MCalendarView formatoCelda;
     private SimpleDateFormat simpleDateFormat;
     private long fechaActual;
     private String dateString;
     private DateFormat df;
     private Calendar cal;
+    private String fechaReserva;
 
     private static final String CHANNEL_ID="NOTIFICACION";
     private static final int NOTIFICACION_ID=0;
@@ -64,8 +68,6 @@ public class CalendarActivity extends AppCompatActivity {
         simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
         dateString=simpleDateFormat.format(fechaActual);
 
-        Toast.makeText(this,"Fecha actual: "+dateString,Toast.LENGTH_SHORT).show();
-
         cargarPreferencias();
 
         calendarView = findViewById(R.id.calendar);
@@ -77,7 +79,9 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView.setOnDateClickListener(new OnDateClickListener() {
             @Override
             public void onDateClick(View view, DateData date) {
-                Toast.makeText(getApplicationContext(), "Tienes una reserva para el  : " + date.getDayString()+" de "+date.getMonthString(), Toast.LENGTH_LONG).show();
+
+                fechaReserva=date.getDayString()+"/"+date.getMonthString()+"/"+date.getYear();
+
             }
         });
     }
@@ -92,7 +96,7 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
-    private void cargarFechasReserva(int id){
+   private void cargarFechasReserva(int id){
 
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
@@ -125,16 +129,12 @@ public class CalendarActivity extends AppCompatActivity {
 
                 fecha=fechas.get(i);
 
-                Toast.makeText(this,"Fecha rescatada: "+fecha,Toast.LENGTH_SHORT).show();
-
                 if(dateString.equals(fecha)){
-
-                    Toast.makeText(this,"Entrando...",Toast.LENGTH_SHORT).show();
 
                     createNotification();
                     createNotificationChannel();
 
-                }
+                    }
 
                 df = new SimpleDateFormat("dd/MM/yyyy");
                 date = df.parse(fecha);
@@ -147,6 +147,12 @@ public class CalendarActivity extends AppCompatActivity {
 
                 calendarView.markDate(anio,mes,dia);
 
+
+                formatoCelda=calendarView.setMarkedStyle(0,Color.RED);
+                formatoCelda.markDate(anio,mes,dia);
+
+
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -154,6 +160,8 @@ public class CalendarActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     private void createNotificationChannel(){
 

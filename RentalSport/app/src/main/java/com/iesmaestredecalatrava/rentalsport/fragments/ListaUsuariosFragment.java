@@ -167,7 +167,7 @@ public class ListaUsuariosFragment extends Fragment {
                             public void onClick(int pos) {
                                 borrarCuenta(email,password);
                                 id=listaUsuarios.get(pos).getId();
-                                listaUsuarios.remove(viewHolder.getPosition());
+
                                 borrarUsuario(id);
                             }
                         }));

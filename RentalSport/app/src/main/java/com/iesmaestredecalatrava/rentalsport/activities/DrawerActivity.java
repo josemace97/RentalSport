@@ -22,6 +22,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,6 +67,9 @@ public class DrawerActivity extends AppCompatActivity implements
     private static int SOLICITUD_CALL_PHONE=1;
 
     private FirebaseAuth mAuth;
+
+    private EditText destinatario,asunto,mensaje;
+    private Button enviarCorreo;
 
 
     @Override
@@ -167,10 +173,40 @@ public class DrawerActivity extends AppCompatActivity implements
 
             case R.id.envio:
 
-                fragmentManager=getSupportFragmentManager();
+                /*fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container,new FragmentEnvioCorreo());
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(DrawerActivity.this);
+                View v= getLayoutInflater().inflate(R.layout.activity_envio_correo,null);
+
+                destinatario=v.findViewById(R.id.destinatario);
+                asunto=v.findViewById(R.id.asunto);
+                mensaje=v.findViewById(R.id.mensaje);
+
+                enviarCorreo=v.findViewById(R.id.enviarCorreo);
+
+                enviarCorreo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent email=new Intent(Intent.ACTION_SEND);
+                        email.setData(Uri.parse("mailto:"));
+                        email.setType("text/plain");
+                        email.putExtra(Intent.EXTRA_EMAIL,new String[]{destinatario.getText().toString()});
+                        email.putExtra(Intent.EXTRA_SUBJECT,asunto.getText().toString());
+                        email.putExtra(Intent.EXTRA_TEXT,mensaje.getText().toString());
+
+                        startActivity(Intent.createChooser(email,"Envíar Gmail: "));
+
+                    }
+                });
+
+                builder.setView(v);
+                final AlertDialog dialog = builder.create();
+                dialog.setTitle("CORREO ELECTRÓNICO");
+                dialog.show();
 
                 break;
 
@@ -196,8 +232,6 @@ public class DrawerActivity extends AppCompatActivity implements
 
         int id=sharedPreferences.getInt("id_usuario",0);
 
-        Toast.makeText(this,"Id:"+id,Toast.LENGTH_SHORT).show();
-
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
         Cursor c=sqLiteDatabase.rawQuery("SELECT EMAIL,PASSWORD,TELEFONO " +
@@ -210,7 +244,6 @@ public class DrawerActivity extends AppCompatActivity implements
             password=c.getString(1);
             telefono=c.getString(2);
 
-            Toast.makeText(this,"Email: "+email+", Password:"+password,Toast.LENGTH_SHORT).show();
         }
 
         nuevoEmail=preferences.getString("correo",email);

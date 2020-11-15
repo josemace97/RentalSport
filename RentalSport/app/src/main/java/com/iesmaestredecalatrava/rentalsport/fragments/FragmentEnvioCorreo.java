@@ -15,16 +15,16 @@ import com.iesmaestredecalatrava.rentalsport.R;
 
 public class FragmentEnvioCorreo extends Fragment {
 
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceStated){
+    public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceStated) {
 
-        View view= layoutInflater.inflate(R.layout.fragment_envio_correo,container,false);
+        View view = layoutInflater.inflate(R.layout.activity_envio_correo, container, false);
 
-        final EditText direccionCorreo=view.findViewById(R.id.correo);
+        /*final EditText direccionCorreo=view.findViewById(R.id.correo);
         final EditText asunto=view.findViewById(R.id.asunto);
         final EditText mensaje=view.findViewById(R.id.mensaje);
-        Button enviar=view.findViewById(R.id.enviarMensaje);
+        Button enviar=view.findViewById(R.id.enviarMensaje);*/
 
-        enviar.setOnClickListener(new View.OnClickListener() {
+       /* enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -43,5 +43,9 @@ public class FragmentEnvioCorreo extends Fragment {
         });
 
         return view;
+    }*/
+
+       return view;
+
     }
 }

@@ -62,7 +62,19 @@
             android:layout_marginTop="1dp"
             />
 
+        <ImageView
+            android:id="@+id/imgIzq"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="365dp"
+            app:srcCompat="@drawable/ic_chevron_left" />
+
     </androidx.cardview.widget.CardView>
+
+
 
 
 </RelativeLayout>
