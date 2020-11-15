@@ -57,7 +57,13 @@ public class Galeria extends AppCompatActivity {
 
         gallery = (Gallery) findViewById(R.id.gallery);
         gallery.setAdapter(new AdaptadorGaleria(this, imagenesPista));
+<<<<<<< HEAD
         //al
+=======
+        //al seleccionar una imagen, la mostramos en el centro de la pantalla a mayor tamaño
+
+        //con este listener, sólo se mostrarían las imágenes sobre las que se pulsa
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 imagenSeleccionada.setImageBitmap(imagenesPista[position]);
@@ -65,13 +71,20 @@ public class Galeria extends AppCompatActivity {
 
         });
 
+<<<<<<< HEAD
         gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+=======
+        /*gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
             @Override
             public void onItemSelected(AdapterView parent, View v, int position, long id) {
                 imagenSeleccionada.setImageBitmap(imagenesPista[position]);
+<<<<<<< HEAD
                 imagenSeleccionada.setMaxHeight(300);
                 imagenSeleccionada.setMaxWidth(500);
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
             }
 
             @Override
@@ -79,7 +92,11 @@ public class Galeria extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
             }
+<<<<<<< HEAD
         });
+=======
+        });*/
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     }
 
@@ -96,7 +113,11 @@ public class Galeria extends AppCompatActivity {
         Cursor c = sqLiteDatabase.rawQuery("SELECT F.FOTO\n" +
                 "FROM PISTAS P,GALERIA_PISTA GP,FOTOS F\n" +
                 "WHERE F.ID=GP.FOTO AND P.ID=GP.PISTA\n" +
+<<<<<<< HEAD
                 "AND P.NOMBRE='"+nombrePista+"';", null);
+=======
+                "AND P.NOMBRE='" + nombrePista + "';", null);
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         if (c == null) {
 

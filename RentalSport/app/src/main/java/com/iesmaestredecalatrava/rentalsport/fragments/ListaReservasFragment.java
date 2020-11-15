@@ -1,5 +1,6 @@
 package com.iesmaestredecalatrava.rentalsport.fragments;
 
+<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+=======
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -20,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,12 +40,18 @@ import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.activities.Galeria;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoReservasActivity;
+=======
+import android.widget.Toast;
+
+import com.iesmaestredecalatrava.rentalsport.R;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorReservas;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorUsuarios;
 import com.iesmaestredecalatrava.rentalsport.modelo.Pista;
 import com.iesmaestredecalatrava.rentalsport.modelo.Reserva;
 import com.iesmaestredecalatrava.rentalsport.modelo.Usuario;
 import com.iesmaestredecalatrava.rentalsport.persistencia.ConexionBD;
+<<<<<<< HEAD
 import com.iesmaestredecalatrava.rentalsport.swipe.ButtomClickListener;
 import com.iesmaestredecalatrava.rentalsport.swipe.Swipe;
 
@@ -45,6 +59,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+=======
+
+import java.util.ArrayList;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,6 +88,7 @@ public class ListaReservasFragment extends Fragment {
     private ArrayList<Reserva> listarReservas;
     private ConexionBD conexionBD;
     private AdaptadorReservas adaptadorReservas;
+<<<<<<< HEAD
     private int idUsuario,idHorario,posicion;
     private Bundle bundle;
     private byte [] imagen;
@@ -80,6 +99,10 @@ public class ListaReservasFragment extends Fragment {
     private ImageView img;
     private FloatingActionButton fabEliminarReserva,fabCancelar;
     private SharedPreferences sharedPreferences;
+=======
+    private int idUsuario;
+    private Bundle bundle;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 
     public ListaReservasFragment() {
@@ -107,7 +130,12 @@ public class ListaReservasFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         if (getArguments() != null) {             mParam1 = getArguments().getString(ARG_PARAM1);
+=======
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -123,12 +151,16 @@ public class ListaReservasFragment extends Fragment {
         conexionBD=new ConexionBD(getContext());
         bundle=new Bundle();
 
+<<<<<<< HEAD
         sharedPreferences= getContext().getSharedPreferences("credenciales", MODE_PRIVATE);
 
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         adaptadorReservas=new AdaptadorReservas(listarReservas);
 
         recyclerReservas.setAdapter(adaptadorReservas);
 
+<<<<<<< HEAD
         idUsuario=sharedPreferences.getInt("id_usuario",0);
 
         cargarReservas();
@@ -310,12 +342,24 @@ public class ListaReservasFragment extends Fragment {
     }
 
 
+=======
+        cargarReservas();
+
+        return view;
+    }
+
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     private void cargarReservas(){
 
         SQLiteDatabase sqLiteDatabase = conexionBD.getReadableDatabase();
 
         String id=String.valueOf(idUsuario);
 
+<<<<<<< HEAD
+=======
+        Toast.makeText(this.getActivity(),id+" se ha recuperado el id",Toast.LENGTH_SHORT).show();
+
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         Cursor cursor=sqLiteDatabase.rawQuery("SELECT P.IMG,P.NOMBRE,R.FECHA " +
                 "FROM RESERVAS R,USUARIOS U,PISTAS P" +
                 " WHERE R.USUARIO=U.ID AND R.PISTA=P.ID",null);
@@ -325,6 +369,10 @@ public class ListaReservasFragment extends Fragment {
             listarReservas.add(new Reserva(cursor.getString(1), cursor.getString(2),cursor.getBlob(0)));
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         }
 
     }

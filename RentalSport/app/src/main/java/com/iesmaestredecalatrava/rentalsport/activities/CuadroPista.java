@@ -41,7 +41,11 @@ public class CuadroPista extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
+<<<<<<< HEAD
         /*conexionBD=new ConexionBD(getActivity(),"bd_rentalsport",null,2);*/
+=======
+        conexionBD=new ConexionBD(getActivity(),"bd_rentalsport",null,2);
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();

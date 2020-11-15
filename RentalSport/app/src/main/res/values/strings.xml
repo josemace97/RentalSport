@@ -34,6 +34,7 @@
     <string name="input_latitud">Introduce la latitud: </string>
     <string name="input_longitud">Introduce la longitud: </string>
     <string name="fecha_reserva">fecha_reserva</string>
+<<<<<<< HEAD
     <string name="alquiler_padel_sin_luz">- Alquiler 1 h sin luz artificial 4 euros +1/2 adicional 2 euros</string>
     <string name="alquiler_padel_con_luz">- Alquiler 1 h con luz artificial 5,50 euros +1/2 adicional 2,50 euros</string>
     <string name="alquiler_tenis__sin_luz">- Alquiler 1 h sin luz artificial 1,80 euros +1/2 adicional 0,70 euros</string>
@@ -42,4 +43,14 @@
     <string name="alquiler_baloncesto_con_luz"> Alquiler 1 h sin luz artificial 5,50 euros +1/2 adicional 2 euros</string>
     <string name="alquiler_pabellon_sin_luz">- Alquiler 1 h sin luz artificial 10 euros +1/2 adicional 5 euros</string>
     <string name="alquiler_pabellon_con_luz">- Alquiler 1 h con luz artificial 13 euros +1/2 adicional 6,50 euros</string>
+=======
+    <string name="alquiler_padel_sin_luz">- Alquiler 1 h sin luz artificial 4 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_padel_con_luz">- Alquiler 1 h con luz artificial 5,50 euros - 1/2 adicional 2,50 euros</string>
+    <string name="alquiler_tenis__sin_luz">- Alquiler 1 h sin luz artificial 1,80 euros - 1/2 adicional 0,70 euros</string>
+    <string name="alquiler_tenis_con_luz">- Alquiler 1 h con luz artificial 2,50 euros - 1/2 adicional 1 euro</string>
+    <string name="alquiler_baloncesto_sin_luz"> Alquiler 1 h sin luz artificial 4 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_baloncesto_con_luz"> Alquiler 1 h sin luz artificial 5,50 euros - 1/2 adicional 2 euros</string>
+    <string name="alquiler_pabellon_sin_luz">- Alquiler 1 h sin luz artificial 10 euros - 1/2 adicional 5 euros</string>
+    <string name="alquiler_pabellon_con_luz">- Alquiler 1 h con luz artificial 13 euros - 1/2 adicional 6,50 euros</string>
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 </resources>

@@ -16,7 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.077"
+=======
+        app:layout_constraintVertical_bias="0.029"
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         app:srcCompat="@drawable/imagennodisponible" />
 
     <TextView
@@ -89,7 +93,11 @@
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.781" />
+=======
+        app:layout_constraintVertical_bias="0.797" />
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     <EditText
         android:id="@+id/edtPrecio"
@@ -107,7 +115,11 @@
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.781" />
+=======
+        app:layout_constraintVertical_bias="0.797" />
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     <TextView
         android:id="@+id/textView8"
@@ -146,10 +158,17 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69" />
+=======
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     <EditText
         android:id="@+id/edtHoraFin"
@@ -164,10 +183,17 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.688" />
+=======
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     <Button
         android:id="@+id/btnConfirmarReserva"

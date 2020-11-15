@@ -90,7 +90,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+<<<<<<< HEAD
                     android:text="Pulsa para acceder a tu perfil"
+=======
+                    android:text="Pulsa para acceder a tus contactos"
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 

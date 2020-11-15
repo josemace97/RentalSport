@@ -62,6 +62,7 @@
             android:layout_marginTop="1dp"
             />
 
+<<<<<<< HEAD
         <ImageView
             android:id="@+id/imgIzq"
             android:layout_width="50dp"
@@ -77,4 +78,9 @@
 
 
 
+=======
+    </androidx.cardview.widget.CardView>
+
+
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 </RelativeLayout>

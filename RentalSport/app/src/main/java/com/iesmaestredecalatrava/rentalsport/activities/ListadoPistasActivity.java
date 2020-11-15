@@ -3,6 +3,7 @@ package com.iesmaestredecalatrava.rentalsport.activities;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,10 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+=======
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+<<<<<<< HEAD
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +33,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorPistas;
+=======
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.iesmaestredecalatrava.rentalsport.R;
+import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorPistas;
+import com.iesmaestredecalatrava.rentalsport.fragments.RutaActivity;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import com.iesmaestredecalatrava.rentalsport.modelo.Pista;
 import com.iesmaestredecalatrava.rentalsport.persistencia.ConexionBD;
 import com.iesmaestredecalatrava.rentalsport.swipe.ButtomClickListener;
@@ -40,11 +57,16 @@ public class ListadoPistasActivity extends AppCompatActivity {
   private RecyclerView recyclerPistas;
   private Bundle bundle;
   private String deporte;
+<<<<<<< HEAD
   private String nombrePista,direcc,superficie;
+=======
+  private String nombrePista;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
   private double latitud,longitud;
   private ConexionBD conn;
   private Bundle bundle2;
   private Pista pista;
+<<<<<<< HEAD
   private byte [] imagen;
 
     private TextView codigoPostal,direccion,
@@ -52,13 +74,18 @@ public class ListadoPistasActivity extends AppCompatActivity {
             paginaWeb,propietario,extension,GPS;
 
     private ImageView img;
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_pistas);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         bundle=this.getIntent().getExtras();
 
         if(bundle!=null){
@@ -102,7 +129,11 @@ public class ListadoPistasActivity extends AppCompatActivity {
 
         Swipe swipe=new Swipe(this,recyclerPistas,200,false) {
             @Override
+<<<<<<< HEAD
             public void instantiateMySwipe(final RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
+=======
+            public void instantiateMySwipe(RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
                 buffer.add(new MyButton(ListadoPistasActivity.this,
                         "Galeria", 0,
@@ -135,13 +166,18 @@ public class ListadoPistasActivity extends AppCompatActivity {
                                 i.putExtras(bundle);
                                 startActivity(i);*/
 
+<<<<<<< HEAD
                                 Intent i=new Intent(ListadoPistasActivity.this,RutaActivity.class);
+=======
+                               Intent i=new Intent(ListadoPistasActivity.this,RutaActivity.class);
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
                                 bundle.putString("nombre_pista",nombrePista);
                                 i.putExtras(bundle);
                                startActivity(i);
                             }
                         }));
 
+<<<<<<< HEAD
                 buffer.add(new MyButton(ListadoPistasActivity.this,
                         "Detalle", 0,
                         R.drawable.ic_info, Color.parseColor("#FFFFFF"), new ButtomClickListener() {
@@ -190,6 +226,8 @@ public class ListadoPistasActivity extends AppCompatActivity {
                     }
                 }));
 
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
             }
         };
 
@@ -239,7 +277,10 @@ public class ListadoPistasActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Se han encontrado "+ listaPistas.size()+" resultado/resultados", Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
         Toast.makeText(this,"Desliza hacia la izquierda para ver el menú de las pistas/Pulsa sobre el item para realizar una reserva.",Toast.LENGTH_LONG).show();
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     }
 
     private void getCoordenadas(){
@@ -260,10 +301,15 @@ public class ListadoPistasActivity extends AppCompatActivity {
             latitud=c.getDouble(0);
             longitud=c.getDouble(1);
 
+<<<<<<< HEAD
+=======
+            Toast.makeText(this,"Latitud: "+latitud+",Longitud: "+longitud,Toast.LENGTH_SHORT).show();
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         }
     }
 
+<<<<<<< HEAD
     private void cargarDetallePista(){
 
         SQLiteDatabase sqLiteDatabase=conn.getReadableDatabase();
@@ -289,5 +335,8 @@ public class ListadoPistasActivity extends AppCompatActivity {
     }
 
 }
+=======
+   }
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 

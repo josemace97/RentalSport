@@ -1,6 +1,7 @@
 package com.iesmaestredecalatrava.rentalsport.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
+=======
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -37,10 +46,13 @@ public class ListadoHorariosActivity extends AppCompatActivity {
     private Intent i;
     private String nombrePista,fechaReserva,horaInicio,horaFin;
 
+<<<<<<< HEAD
     private static final String CHANNEL_ID="NOTIFICACION";
     private static final int NOTIFICACION_ID=0;
 
 
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +93,7 @@ public class ListadoHorariosActivity extends AppCompatActivity {
                bundle.putString("nombrePista",nombrePista);
                bundle.putString("fechaReserva",fechaReserva);
 
+<<<<<<< HEAD
                 if(!comprobarReserva()){
 
                     lanzarNotificacion();
@@ -91,6 +104,11 @@ public class ListadoHorariosActivity extends AppCompatActivity {
                     i.putExtras(bundle);
                     startActivity(i);
                 }
+=======
+               i=new Intent(ListadoHorariosActivity.this,ReservaActivity.class);
+               i.putExtras(bundle);
+               startActivity(i);
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
             }
         });
@@ -106,6 +124,11 @@ public class ListadoHorariosActivity extends AppCompatActivity {
                "FROM HORARIOS H,PISTAS P " +
                "WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"' " ,null);
 
+<<<<<<< HEAD
+=======
+        Toast.makeText(this,"Nombre pista: "+nombrePista,Toast.LENGTH_SHORT).show();
+
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         while (c.moveToNext()){
 
             String horaInicio=c.getString(0);
@@ -118,6 +141,7 @@ public class ListadoHorariosActivity extends AppCompatActivity {
 
     }
 
+<<<<<<< HEAD
     private boolean comprobarReserva(){
 
         boolean continuar=true;
@@ -179,4 +203,6 @@ public class ListadoHorariosActivity extends AppCompatActivity {
     }
 
 
+=======
+>>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 }
