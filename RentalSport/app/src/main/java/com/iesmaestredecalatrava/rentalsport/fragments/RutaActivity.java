@@ -253,7 +253,7 @@ public class RutaActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                 endMarker.position(polylineEndLatLng);
-                endMarker.("Pabellón José Manuel Roldán");
+                endMarker.title("Pabellón José Manuel Roldán");
                 mMap.addMarker(endMarker);
 
                 break;
