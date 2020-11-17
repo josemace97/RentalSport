@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.DetalleReservaActivity"
-<<<<<<< HEAD
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="5dp">
-=======
-    android:background="#33FF71">
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 
     <ImageView
         android:id="@+id/imgFoto"
         android:layout_width="244dp"
         android:layout_height="198dp"
-<<<<<<< HEAD
         android:layout_marginLeft="55dp"
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
@@ -35,26 +26,60 @@
         app:srcCompat="@drawable/imagennodisponible" />
 
     <EditText
-        android:id="@+id/edhoraInicio"
-<<<<<<< HEAD
-        android:layout_width="265dp"
+        android:id="@+id/edPista"
+        android:layout_width="337dp"
         android:layout_height="44dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="150dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:hint="Nombre pista:"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+    <EditText
+        android:id="@+id/edDireccion"
+        android:layout_width="337dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Dirección:"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+
+    <EditText
+        android:id="@+id/edhoraInicio"
+        android:layout_width="333dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/custom_editext"
         android:ems="10"
         android:hint="@string/hora_inicio"
         android:inputType="textPersonName"
         android:textAlignment="center"
-=======
-        android:layout_width="177dp"
-        android:layout_height="33dp"
-        android:background="@drawable/custom_editext"
-        android:ems="10"
-        android:textAlignment="center"
-        android:hint="@string/hora_inicio"
-        android:inputType="textPersonName"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
@@ -65,18 +90,15 @@
 
     <EditText
         android:id="@+id/edhoraFin"
-<<<<<<< HEAD
-        android:layout_width="276dp"
+        android:layout_width="325dp"
         android:layout_height="44dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
-=======
-        android:layout_width="185dp"
-        android:layout_height="31dp"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         android:background="@drawable/custom_editext"
         android:drawablePadding="12dp"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="@string/hora_fin"
         android:inputType="textPersonName"
         android:textAlignment="center"
@@ -90,24 +112,17 @@
 
     <EditText
         android:id="@+id/edTiempoAlquiler"
-<<<<<<< HEAD
-        android:layout_width="284dp"
+        android:layout_width="323dp"
         android:layout_height="44dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/custom_editext"
         android:drawablePadding="12dp"
         android:editable="false"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="Tiempo alquiler:"
-=======
-        android:layout_width="185dp"
-        android:layout_height="36dp"
-        android:background="@drawable/custom_editext"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="@string/fechareserva"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -117,93 +132,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.674" />
 
-<<<<<<< HEAD
     <EditText
         android:id="@+id/edPrecio"
-        android:layout_width="292dp"
+        android:layout_width="327dp"
         android:layout_height="44dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/custom_editext"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="Precio alquiler:"
         android:inputType="textPersonName"
         android:textAlignment="center"
-=======
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hora inicio: "
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hora fin:"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiempo alquiler: "
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio: "
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
-
-    <Button
-        android:id="@+id/btnCancelarReserva"
-        android:layout_width="204dp"
-        android:layout_height="63dp"
-        android:text="CANCELAR RESERVA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
-
-    <EditText
-        android:id="@+id/edPrecio"
-        android:layout_width="182dp"
-        android:layout_height="37dp"
-        android:background="@drawable/custom_editext"
-        android:ems="10"
-        android:hint="Precio alquiler:"
-        android:textAlignment="center"
-        android:inputType="textPersonName"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.772"
@@ -211,22 +152,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.39" />
 
-<<<<<<< HEAD
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCancelarReserva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="55dp"
-        app:fab_colorNormal="#33FF71"
-        app:fab_icon="@drawable/ic_check"
-        app:fab_size="normal"
-        app:fab_title="Cancelar reserva" />
-
 
 
 </LinearLayout>
-=======
-
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c

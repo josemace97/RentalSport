@@ -72,11 +72,7 @@
         android:layout_below="@+id/idImagen"
         android:background="#000000"
 
-<<<<<<< HEAD
         android:layout_marginTop="1dp"
-=======
-        android:layout_marginTop="11dp"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         />
 
 </RelativeLayout>

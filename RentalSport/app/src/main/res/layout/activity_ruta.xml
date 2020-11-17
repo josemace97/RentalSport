@@ -4,23 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context=".activities.RutaActivity">
-=======
-    tools:context=".fragments.RutaActivity">
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-<<<<<<< HEAD
         android:id="@+id/mapa"
         tools:context=".MainActivity"
-=======
-        android:id="@+id/map"
-        tools:context=".fragments.RutaActivity"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

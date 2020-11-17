@@ -24,10 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
-<<<<<<< HEAD
 import com.iesmaestredecalatrava.rentalsport.fragments.ListaReservasFragment;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import com.iesmaestredecalatrava.rentalsport.fragments.ListaUsuariosFragment;
 
 import java.util.ArrayList;
@@ -48,10 +45,7 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
     private Map<Integer, List<MyButton>> botonBuffer;
     private Queue<Integer> removeQueue;
     private ListaUsuariosFragment listaUsuariosFragment;
-<<<<<<< HEAD
     private ListaReservasFragment listaReservasFragment;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     private static boolean esFragment;
 
     private GestureDetector.SimpleOnGestureListener listener=new GestureDetector.SimpleOnGestureListener(){
@@ -78,7 +72,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             Point point=new Point((int)motionEvent.getRawX(),(int)motionEvent.getRawY());
 
             RecyclerView.ViewHolder swipeViewHolder=recyclerView.findViewHolderForAdapterPosition(posicion);
-<<<<<<< HEAD
 
             if(swipeViewHolder!=null){
 
@@ -101,24 +94,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
                         posicion=-1;
                         recoverSwipedItem();
                     }
-=======
-            View swipedItem=swipeViewHolder.itemView;
-
-            Rect rect=new Rect();
-            swipedItem.getGlobalVisibleRect(rect);
-
-            if(motionEvent.getAction()==MotionEvent.ACTION_DOWN ||
-                    motionEvent.getAction()==MotionEvent.ACTION_UP ||
-                    motionEvent.getAction() == MotionEvent.ACTION_MOVE)
-            {
-                if(rect.top<point.y && rect.bottom>point.y)
-                    detector.onTouchEvent(motionEvent);
-                else{
-
-                    removeQueue.add(posicion);
-                    posicion=-1;
-                    recoverSwipedItem();
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
                 }
             }
 
@@ -180,10 +155,7 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
         private Context context;
         private Resources recursos;
         private ListaUsuariosFragment listaUsuariosFragment;
-<<<<<<< HEAD
         private ListaReservasFragment listaReservasFragment;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         public MyButton(Context context,String texto,int tamanioTexto,int imagenId,int color,ButtomClickListener listener) {
             this.texto = texto;
@@ -206,7 +178,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             this.recursos = listaUsuariosFragment.getResources();
         }
 
-<<<<<<< HEAD
         public MyButton(ListaReservasFragment listaReservasFragment, String texto, int tamanioTexto, int ic_delete, int color, ButtomClickListener listener) {
 
             this.texto = texto;
@@ -218,8 +189,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             this.recursos = listaReservasFragment.getResources();
         }
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         public boolean onClick(float x,float y){
 
             if(region!=null && region.contains(x,y)){
@@ -258,7 +227,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
 
             else if(esFragment){
 
-<<<<<<< HEAD
                 if(listaUsuariosFragment instanceof ListaUsuariosFragment){
 
                     Drawable d= ContextCompat.getDrawable(listaUsuariosFragment.getContext(),imagenId);
@@ -277,13 +245,6 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
                 }
 
 
-=======
-
-
-                Drawable d= ContextCompat.getDrawable(listaUsuariosFragment.getContext(),imagenId);
-                Bitmap bitmap=drawableToBipmap(d);
-                c.drawBitmap(bitmap,(rectF.left+rectF.right)/2,(rectF.top+rectF.bottom)/2,paint);
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
             }else{
 

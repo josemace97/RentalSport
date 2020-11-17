@@ -3,11 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-<<<<<<< HEAD
         android:id="@+id/datepicker"
-=======
-        android:id="@+id/calendario"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         android:title="Calendario"
         android:icon="@drawable/ic_calendario"
         app:showAsAction="always">

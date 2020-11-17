@@ -1,6 +1,5 @@
 package com.iesmaestredecalatrava.rentalsport.fragments;
 
-<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,23 +10,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-=======
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.net.Uri;
 import android.os.Bundle;
+import java.time.*;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -40,29 +34,23 @@ import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.activities.Galeria;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoReservasActivity;
-=======
-import android.widget.Toast;
-
-import com.iesmaestredecalatrava.rentalsport.R;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorReservas;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorUsuarios;
 import com.iesmaestredecalatrava.rentalsport.modelo.Pista;
 import com.iesmaestredecalatrava.rentalsport.modelo.Reserva;
 import com.iesmaestredecalatrava.rentalsport.modelo.Usuario;
 import com.iesmaestredecalatrava.rentalsport.persistencia.ConexionBD;
-<<<<<<< HEAD
 import com.iesmaestredecalatrava.rentalsport.swipe.ButtomClickListener;
 import com.iesmaestredecalatrava.rentalsport.swipe.Swipe;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
-=======
-
-import java.util.ArrayList;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,21 +76,16 @@ public class ListaReservasFragment extends Fragment {
     private ArrayList<Reserva> listarReservas;
     private ConexionBD conexionBD;
     private AdaptadorReservas adaptadorReservas;
-<<<<<<< HEAD
-    private int idUsuario,idHorario,posicion;
-    private Bundle bundle;
-    private byte [] imagen;
-    private Bitmap bitmap;
+    private int idUsuario,posicion;
     private String nombrePista;
+    private int idPista;
+    private String fecha;
+    private SimpleDateFormat simpleDateFormat;
+    private Date fechaActual;
+    private Date fechaReserva;
 
-    private EditText horaInicio,horaFin,precio,tiempoAlquiler;
-    private ImageView img;
-    private FloatingActionButton fabEliminarReserva,fabCancelar;
+
     private SharedPreferences sharedPreferences;
-=======
-    private int idUsuario;
-    private Bundle bundle;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 
     public ListaReservasFragment() {
@@ -130,12 +113,7 @@ public class ListaReservasFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         if (getArguments() != null) {             mParam1 = getArguments().getString(ARG_PARAM1);
-=======
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -149,18 +127,16 @@ public class ListaReservasFragment extends Fragment {
         listarReservas=new ArrayList<>();
         recyclerReservas.setLayoutManager(new LinearLayoutManager(getContext()));
         conexionBD=new ConexionBD(getContext());
-        bundle=new Bundle();
 
-<<<<<<< HEAD
+        simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+
+
         sharedPreferences= getContext().getSharedPreferences("credenciales", MODE_PRIVATE);
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         adaptadorReservas=new AdaptadorReservas(listarReservas);
 
         recyclerReservas.setAdapter(adaptadorReservas);
 
-<<<<<<< HEAD
         idUsuario=sharedPreferences.getInt("id_usuario",0);
 
         cargarReservas();
@@ -179,41 +155,24 @@ public class ListaReservasFragment extends Fragment {
                                 posicion=pos;
 
                                 nombrePista=listarReservas.get(pos).getNombrePista();
+                                fecha=listarReservas.get(pos).getFechaReserva();
 
-                                final AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
-                                View v= getLayoutInflater().inflate(R.layout.activity_detalle_reserva,null);
+                                Toast.makeText(getContext(),"Fecha seleccionada: "+fecha,Toast.LENGTH_SHORT).show();
 
-                                img=v.findViewById(R.id.imgFoto);
-                                horaInicio=v.findViewById(R.id.edhoraInicio);
-                                horaFin=v.findViewById(R.id.edhoraFin);
-                                precio=v.findViewById(R.id.edPrecio);
-                                tiempoAlquiler=v.findViewById(R.id.edTiempoAlquiler);
-                                fabEliminarReserva=v.findViewById(R.id.fabCancelarReserva);
+                                idPista=getIdPista();
 
-                                cargarDatosReserva();
-
-                                builder.setView(v);
-                                final AlertDialog dialog = builder.create();
-                                dialog.show();
-
-
-                                fabEliminarReserva.setOnClickListener(new View.OnClickListener() {
-
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        dialog.cancel();
-
-                                        final AlertDialog.Builder cancelarReserva=new AlertDialog.Builder(getContext());
+                                final AlertDialog.Builder cancelarReserva=new AlertDialog.Builder(getContext());
                                         cancelarReserva.setMessage("¿Quieres cancelar tu reserva?")
                                                 .setCancelable(false)
                                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
 
-                                                          listarReservas.remove(posicion);
-                                                          adaptadorReservas.notifyDataSetChanged();
-                                                          borrarReserva();
+                                                        try {
+                                                            borrarReserva();
+                                                        } catch (ParseException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
                                                 })
                                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -230,9 +189,7 @@ public class ListaReservasFragment extends Fragment {
 
 
                                     }
-                                });
 
-                            }
 
                         }));
 
@@ -255,111 +212,70 @@ public class ListaReservasFragment extends Fragment {
         return view;
     }
 
-    private void borrarReserva(){
+    private void borrarReserva() throws ParseException {
 
-        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+       SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
-        sqLiteDatabase.execSQL("DELETE FROM RESERVAS WHERE USUARIO="+idUsuario+" AND HORARIO="+idHorario);
+        fechaActual=new Date();
+        fechaReserva=simpleDateFormat.parse(fecha);
 
-        sqLiteDatabase.close();
-    }
+        String fecha1=simpleDateFormat.format(fechaActual);
+        String fecha2=simpleDateFormat.format(fechaReserva);
 
-    private String getFechaReserva(String nombrePista){
+        Toast.makeText(getContext(),"Fecha actual: "+fecha1,Toast.LENGTH_SHORT).show();
 
-        String fechaReserva="";
+        if(fecha1.equals(fecha2)){
 
-        int idHorario=getIdHorario(nombrePista);
+           Toast.makeText(getContext(),"No se puede cancelar la reserva.Tienes una asignada para hoy",Toast.LENGTH_SHORT).show();
 
-        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+        }else if(fechaActual.after(fechaReserva)){
 
-        Cursor c=sqLiteDatabase.rawQuery("SELECT R.FECHA\n" +
-                "FROM RESERVAS R,USUARIOS U,PISTAS P\n" +
-                "WHERE R.USUARIO=U.ID AND R.PISTA=P.ID AND R.HORARIO="+idHorario,null);
+            listarReservas.remove(posicion);
+            adaptadorReservas.notifyDataSetChanged();
 
+            sqLiteDatabase.execSQL("DELETE FROM RESERVAS WHERE USUARIO="+idUsuario+" AND PISTA="+idPista+" AND FECHA='"+fecha+"'");
 
-        while (c.moveToNext()){
+            sqLiteDatabase.close();
 
-            fechaReserva=c.getString(0);
+            Toast.makeText(getContext(),"Se ha cancelado tu reserva.",Toast.LENGTH_SHORT).show();
 
+        }else if(fechaActual.before(fechaReserva)){
+
+                listarReservas.remove(posicion);
+                adaptadorReservas.notifyDataSetChanged();
+
+                sqLiteDatabase.execSQL("DELETE FROM RESERVAS WHERE USUARIO="+idUsuario+" AND PISTA="+idPista+" AND FECHA='"+fecha+"'");
+
+                sqLiteDatabase.close();
+
+                Toast.makeText(getContext(),"Se ha eliminado la reserva de tu lista.",Toast.LENGTH_SHORT).show();
         }
 
 
-        return fechaReserva;
     }
 
-    private int getIdHorario(String nombrePista){
+    private int getIdPista(){
 
         int id=0;
 
-        String horainicio=sharedPreferences.getString("hora_inicio","");
-        String horafin=sharedPreferences.getString("hora_fin","");
-
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
-        Cursor c=sqLiteDatabase.rawQuery("SELECT H.ID FROM HORARIOS H,PISTAS P WHERE " +
-                "H.PISTA=P.ID AND H.HORA_INICIO='"+horainicio+"' AND H.HORA_FIN='"+horafin+"' " +
-                " AND P.NOMBRE='"+nombrePista+"'",null);
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT ID FROM PISTAS WHERE NOMBRE='"+nombrePista+"'",null);
 
-        while (c.moveToNext()){
+        while (cursor.moveToNext()){
 
-            id=c.getInt(0);
+            id=cursor.getInt(0);
         }
-
-        idHorario=id;
-
 
         return id;
-
     }
 
-
-    private void cargarDatosReserva(){
-
-        String fechaReserva=getFechaReserva(nombrePista);
-
-
-        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
-
-        Cursor c=sqLiteDatabase.rawQuery("SELECT P.IMG,H.HORA_INICIO,H.HORA_FIN,printf('%.2f',H.PRECIO)"+
-                " FROM PISTAS P,HORARIOS H,RESERVAS R,USUARIOS U"+
-                " WHERE P.ID=R.PISTA AND P.NOMBRE='"+nombrePista+"' AND R.USUARIO=U.ID AND R.HORARIO=H.ID AND R.HORARIO="+idHorario+" AND R.FECHA='"+fechaReserva+"'",null);
-
-
-        while (c.moveToNext()){
-
-           imagen=c.getBlob(0);
-           horaInicio.setText("Hora inicio: "+c.getString(1)+" horas");
-           horaFin.setText("Hora fin: "+c.getString(2)+" horas");
-           precio.setText("Precio: "+c.getDouble(3)+"0 euros");
-           tiempoAlquiler.setText("Tiempo alquiler: 1h");
-        }
-
-        if(imagen!=null){
-
-            Bitmap bitmap=BitmapFactory.decodeByteArray(imagen,0,imagen.length);
-            img.setImageBitmap(bitmap);
-        }
-    }
-
-
-=======
-        cargarReservas();
-
-        return view;
-    }
-
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     private void cargarReservas(){
 
         SQLiteDatabase sqLiteDatabase = conexionBD.getReadableDatabase();
 
         String id=String.valueOf(idUsuario);
 
-<<<<<<< HEAD
-=======
-        Toast.makeText(this.getActivity(),id+" se ha recuperado el id",Toast.LENGTH_SHORT).show();
-
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         Cursor cursor=sqLiteDatabase.rawQuery("SELECT P.IMG,P.NOMBRE,R.FECHA " +
                 "FROM RESERVAS R,USUARIOS U,PISTAS P" +
                 " WHERE R.USUARIO=U.ID AND R.PISTA=P.ID",null);
@@ -368,14 +284,24 @@ public class ListaReservasFragment extends Fragment {
 
             listarReservas.add(new Reserva(cursor.getString(1), cursor.getString(2),cursor.getBlob(0)));
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         }
 
     }
+
+    /*private void getIdHorario(){
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT H.ID" +
+              "FROM RESERVAS R,USUARIOS U,PISTAS P,HORARIOS H\n" +
+              "WHERE R.USUARIO=U.ID AND R.PISTA=P.ID AND R.HORARIO=H.ID AND " +
+              "R.USUARIO="+idUsuario+" AND R.FECHA='"+fecha+"'",null);)
+
+        while (cursor.moveToNext()){
+
+            idHorario=cursor.getInt(0);
+        }
+    }*/
 
 
     // TODO: Rename method, update argument and hook method into UI event

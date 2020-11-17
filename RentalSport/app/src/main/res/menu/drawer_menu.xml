@@ -28,13 +28,9 @@
     <item android:title="Comunicación" >
         <menu>
             <item android:id="@+id/paginaWeb"
-<<<<<<< HEAD
                 android:icon="@drawable/ic_paginaweb"
                 android:title="Página web"
                 android:iconTint="#000000"
-=======
-                android:title="Página web"
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
                 >
 
             </item>

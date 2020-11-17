@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-<<<<<<< HEAD
-=======
-import android.util.Log;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.widget.Toast;
 
 import java.io.File;
@@ -15,15 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-<<<<<<< HEAD
-=======
-import java.sql.SQLException;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 public class ConexionBD extends SQLiteOpenHelper {
 
     private static String DB_PATH = "/data/data/com.iesmaestredecalatrava.rentalsport/databases/";
-    private static String DB_NAME = "rentalsport";
+    private static String DB_NAME = "RentalSport";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
 
@@ -35,18 +27,12 @@ public class ConexionBD extends SQLiteOpenHelper {
         File dbfile = new File(myPath);
         if (dbfile.exists()) {
 
-<<<<<<< HEAD
+
 
         } else {
             try {
                 createDataBase();
                 Toast.makeText(context,"Creando base de datos",Toast.LENGTH_SHORT).show();
-=======
-        } else {
-            try {
-                createDataBase();
-                Toast.makeText(context,"Crreando",Toast.LENGTH_SHORT).show();
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
             } catch (IOException e) {
                 e.printStackTrace();
             }

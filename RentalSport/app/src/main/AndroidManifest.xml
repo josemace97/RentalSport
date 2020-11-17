@@ -22,21 +22,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
         <activity android:name=".activities.DetallePistaActivity"></activity>
         <activity android:name=".activities.MapaActivity" />
         <activity android:name=".activities.RutaActivity" />
-=======
-        <activity android:name=".fragments.RutaActivity"></activity>
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         <activity android:name=".activities.Galeria" />
         <activity android:name=".activities.PreciosActivity" />
         <activity android:name=".activities.CalendarActivity" />
         <activity android:name=".activities.DetalleReservaActivity" />
-<<<<<<< HEAD
-=======
-        <activity android:name=".activities.DetallesReservaActivity" />
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         <activity android:name=".activities.PreferenciasActivity" />
         <activity
             android:name=".activities.ReservaActivity"

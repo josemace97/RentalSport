@@ -58,11 +58,8 @@ implements View.OnClickListener{
         Bitmap bitmap=BitmapFactory.decodeByteArray(imagenPista,0,imagenPista.length);
         holder.foto.setImageBitmap(bitmap);
 
-<<<<<<< HEAD
         holder.iconoIzqu.setImageResource(R.drawable.ic_chevron_left);
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     }
 
     @Override
@@ -91,11 +88,7 @@ implements View.OnClickListener{
     implements View.OnCreateContextMenuListener{
 
         TextView nombre;
-<<<<<<< HEAD
         ImageView foto,iconoIzqu;
-=======
-        ImageView foto;
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         CardView cardView;
 
@@ -103,10 +96,7 @@ implements View.OnClickListener{
             super(itemView);
             nombre= itemView.findViewById(R.id.idNombre);
             foto=itemView.findViewById(R.id.idImagen);
-<<<<<<< HEAD
             iconoIzqu=itemView.findViewById(R.id.imgIzq);
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
             cardView=itemView.findViewById(R.id.cardPistas);
 

@@ -20,10 +20,10 @@ public class Reserva {
         this.fechaReserva = fechaReserva;
     }
 
-    public Reserva(String nombrePista,String fecha,byte [] foto){
+    public Reserva(String nombrePista,String fechaReserva,byte [] foto){
 
         this.nombrePista=nombrePista;
-        this.fechaReserva=fecha;
+        this.fechaReserva=fechaReserva;
         this.foto=foto;
     }
 

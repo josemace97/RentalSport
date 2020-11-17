@@ -93,11 +93,7 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
         telefono.setText(tlf);
         horaInicio.setText(horainicio+" hrs");
         horaFin.setText(horafin+" hrs");
-<<<<<<< HEAD
         precio.setText(precioReserva+"0 euros");
-=======
-        precio.setText(precioReserva+" euros");
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     }
 
@@ -161,11 +157,7 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
 
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
-<<<<<<< HEAD
         Cursor c=sqLiteDatabase.rawQuery("SELECT printf('%.2f',H.PRECIO) FROM HORARIOS H,PISTAS P WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"'",null);
-=======
-        Cursor c=sqLiteDatabase.rawQuery("SELECT H.PRECIO FROM HORARIOS H,PISTAS P WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"'",null);
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         while (c.moveToNext()){
 
@@ -191,7 +183,6 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
             id=c.getInt(0);
         }
 
-<<<<<<< HEAD
         SharedPreferences sharedPreferences=getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -201,8 +192,6 @@ public class ReservaActivity extends AppCompatActivity implements ListaReservasF
         editor.commit();
 
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         return id;
     }
 

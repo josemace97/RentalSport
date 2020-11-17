@@ -54,12 +54,8 @@ public class LoginActivity extends AppCompatActivity{
 
         progressDialog=new ProgressDialog(this);
 
-<<<<<<< HEAD
         conexionBD=new ConexionBD(this);
 
-=======
-       conexionBD=new ConexionBD(this);
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         try {
             conexionBD.openDataBase();
@@ -99,7 +95,6 @@ public class LoginActivity extends AppCompatActivity{
 
             Toast.makeText(this,"Debes introducir la contraseña",Toast.LENGTH_SHORT).show();
 
-<<<<<<< HEAD
         }else{
 
             email=txtEmail.getText().toString();
@@ -139,47 +134,6 @@ public class LoginActivity extends AppCompatActivity{
                             }
                         });
             }
-=======
-        }else if(txtEmail.getText().toString().equals("admin@gmail.com")
-        && txtPass.getText().toString().equals("1234")){
-
-          intent=new Intent(this,DrawerAdmin.class);
-          startActivity(intent);
-
-        } else{
-
-            email=txtEmail.getText().toString();
-            pass=txtPass.getText().toString();
-
-            Toast.makeText(this,"Email introducido: "+email,Toast.LENGTH_SHORT).show();
-
-            comprobarUsuario();
-
-            progressDialog.setMessage("Cargando...");
-            progressDialog.show();
-
-            fireBaseAuth.signInWithEmailAndPassword(email,pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if(task.isSuccessful()){
-
-                                guardarCredenciales();
-
-                                intent=new Intent(LoginActivity.this,MainActivity.class);
-                                startActivity(intent);
-
-                            }else {
-
-                                    Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
-
-                            }
-
-                            progressDialog.dismiss();
-                        }
-                    });
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
         }
 
@@ -201,11 +155,8 @@ public class LoginActivity extends AppCompatActivity{
 
     }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     private int getId(){
 
         int id=0;
@@ -237,7 +188,6 @@ public class LoginActivity extends AppCompatActivity{
         editor.commit();
     }
 
-<<<<<<< HEAD
     private boolean esAdmin(){
 
         boolean esAdmin=false;
@@ -260,8 +210,6 @@ public class LoginActivity extends AppCompatActivity{
 
         return esAdmin;
     }
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 
 }

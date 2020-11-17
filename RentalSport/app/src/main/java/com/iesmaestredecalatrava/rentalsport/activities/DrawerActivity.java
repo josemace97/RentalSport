@@ -22,12 +22,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
-<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,12 +68,9 @@ public class DrawerActivity extends AppCompatActivity implements
 
     private FirebaseAuth mAuth;
 
-<<<<<<< HEAD
     private EditText destinatario,asunto,mensaje;
     private Button enviarCorreo;
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +173,6 @@ public class DrawerActivity extends AppCompatActivity implements
 
             case R.id.envio:
 
-<<<<<<< HEAD
                 /*fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container,new FragmentEnvioCorreo());
@@ -214,12 +207,6 @@ public class DrawerActivity extends AppCompatActivity implements
                 final AlertDialog dialog = builder.create();
                 dialog.setTitle("CORREO ELECTRÓNICO");
                 dialog.show();
-=======
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container,new FragmentEnvioCorreo());
-                fragmentTransaction.commit();
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
                 break;
 
@@ -245,11 +232,6 @@ public class DrawerActivity extends AppCompatActivity implements
 
         int id=sharedPreferences.getInt("id_usuario",0);
 
-<<<<<<< HEAD
-=======
-        Toast.makeText(this,"Id:"+id,Toast.LENGTH_SHORT).show();
-
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
         Cursor c=sqLiteDatabase.rawQuery("SELECT EMAIL,PASSWORD,TELEFONO " +
@@ -262,10 +244,6 @@ public class DrawerActivity extends AppCompatActivity implements
             password=c.getString(1);
             telefono=c.getString(2);
 
-<<<<<<< HEAD
-=======
-            Toast.makeText(this,"Email: "+email+", Password:"+password,Toast.LENGTH_SHORT).show();
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
         }
 
         nuevoEmail=preferences.getString("correo",email);

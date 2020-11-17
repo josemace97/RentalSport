@@ -15,19 +15,13 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.ImageView;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-<<<<<<< HEAD
 import androidx.appcompat.app.AlertDialog;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -35,10 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.iesmaestredecalatrava.rentalsport.R;
-<<<<<<< HEAD
 import com.iesmaestredecalatrava.rentalsport.constantes.Constantes;
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 import com.iesmaestredecalatrava.rentalsport.fragments.MapaFragment;
 
 import java.util.ArrayList;
@@ -49,13 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CardView cardPistas, cardPerfil, cardPrecios, cardAcercaDe, cardCalendario;
     Cursor c;
 
-<<<<<<< HEAD
     EditText programador,organizacion,version;
     TextView contacto,codigoFuente;
     ImageView imageView;
 
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,12 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.acercade:
 
-<<<<<<< HEAD
                mostrarAlertDialog();
-=======
-                i = new Intent(this, AcercaDeActivity.class);
-                startActivity(i);
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
                 break;
 
@@ -141,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*Toast.makeText(this,"Id: "+id+",email: "+email,Toast.LENGTH_SHORT).show();*/
     /*}*/
 
-<<<<<<< HEAD
     private void mostrarAlertDialog(){
 
         AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
@@ -193,8 +175,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
-=======
->>>>>>> 789b2de8a4e4a8077bc993002556efb43e51c93c
 
 
     @Override
