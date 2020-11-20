@@ -34,6 +34,7 @@ import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.activities.Galeria;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoReservasActivity;
+import com.iesmaestredecalatrava.rentalsport.activities.MainActivity;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorReservas;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorUsuarios;
 import com.iesmaestredecalatrava.rentalsport.modelo.Pista;
@@ -83,6 +84,8 @@ public class ListaReservasFragment extends Fragment {
     private SimpleDateFormat simpleDateFormat;
     private Date fechaActual;
     private Date fechaReserva;
+    private FloatingActionButton menuPrincipal;
+    private Intent i;
 
 
     private SharedPreferences sharedPreferences;
@@ -126,6 +129,7 @@ public class ListaReservasFragment extends Fragment {
         recyclerReservas=view.findViewById(R.id.fragmentRecyclerReservas);
         listarReservas=new ArrayList<>();
         recyclerReservas.setLayoutManager(new LinearLayoutManager(getContext()));
+        menuPrincipal=view.findViewById(R.id.fabMenuPrincipal);
         conexionBD=new ConexionBD(getContext());
 
         simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
@@ -138,6 +142,15 @@ public class ListaReservasFragment extends Fragment {
         recyclerReservas.setAdapter(adaptadorReservas);
 
         idUsuario=sharedPreferences.getInt("id_usuario",0);
+
+        menuPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                i=new Intent(ListaReservasFragment.this.getContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         cargarReservas();
 
@@ -278,7 +291,7 @@ public class ListaReservasFragment extends Fragment {
 
         Cursor cursor=sqLiteDatabase.rawQuery("SELECT P.IMG,P.NOMBRE,R.FECHA " +
                 "FROM RESERVAS R,USUARIOS U,PISTAS P" +
-                " WHERE R.USUARIO=U.ID AND R.PISTA=P.ID",null);
+                " WHERE R.USUARIO=U.ID AND R.PISTA=P.ID AND R.USUARIO="+idUsuario,null);
 
         while (cursor.moveToNext()) {
 

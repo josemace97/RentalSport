@@ -33,7 +33,7 @@ import static android.app.Activity.RESULT_OK;
 public class CuadroPista extends DialogFragment {
 
     private ImageView img;
-    private EditText nombre;
+    private EditText nombre,direccion,extension;
     private Button cargarImg,aniadirPista;
     private Spinner cmbDeportes;
     private String deporte;
@@ -41,7 +41,7 @@ public class CuadroPista extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
-        /*conexionBD=new ConexionBD(getActivity(),"bd_rentalsport",null,2);*/
+        conexionBD=new ConexionBD(getContext());
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();
@@ -50,6 +50,8 @@ public class CuadroPista extends DialogFragment {
 
         img=v.findViewById(R.id.imgPista);
         nombre=v.findViewById(R.id.nombrepista);
+        direccion=v.findViewById(R.id.direccion);
+        extension=v.findViewById(R.id.extension);
         cargarImg=v.findViewById(R.id.btnCargarImagen);
         aniadirPista=v.findViewById(R.id.btnAniadirPista);
         cmbDeportes=v.findViewById(R.id.spinnerDeportes);
@@ -129,6 +131,8 @@ public class CuadroPista extends DialogFragment {
     private void insertarPista(){
 
         String nombrePista=nombre.getText().toString();
+        String direc=direccion.getText().toString();
+        String ext=extension.getText().toString();
         byte imagen []=convertToByte(img);
         int tipo_pista=getTipoPista();
 
@@ -137,7 +141,9 @@ public class CuadroPista extends DialogFragment {
         ContentValues contentValues=new ContentValues();
 
         contentValues.put("NOMBRE",nombrePista);
-        contentValues.put("FOTO",imagen);
+        contentValues.put("IMG",imagen);
+        contentValues.put("DIRECCION",direc);
+        contentValues.put("EXTENSION",ext);
         contentValues.put("DEPORTE",tipo_pista);
 
         db.insert("PISTAS",null,contentValues);

@@ -3,6 +3,7 @@ package com.iesmaestredecalatrava.rentalsport.fragments;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorReservas;
@@ -21,8 +23,11 @@ import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorUsuarios;
 import com.iesmaestredecalatrava.rentalsport.modelo.Reserva;
 import com.iesmaestredecalatrava.rentalsport.modelo.Usuario;
 import com.iesmaestredecalatrava.rentalsport.persistencia.ConexionBD;
+import com.iesmaestredecalatrava.rentalsport.swipe.ButtomClickListener;
+import com.iesmaestredecalatrava.rentalsport.swipe.Swipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +54,8 @@ public class ListaReservasAdminFragment extends Fragment {
     private ConexionBD conexionBD;
     private AdaptadorReservasAdmin adaptadorReservas;
     private Bundle bundle;
+    private int posicion;
+
 
     public ListaReservasAdminFragment() {
 
@@ -92,40 +99,79 @@ public class ListaReservasAdminFragment extends Fragment {
         recyclerReservas.setLayoutManager(new LinearLayoutManager(getContext()));
         bundle=new Bundle();
 
+        conexionBD=new ConexionBD(getContext());
+
         adaptadorReservas=new AdaptadorReservasAdmin(listaReservas);
         recyclerReservas.setAdapter(adaptadorReservas);
 
         cargarReservas();
+
+
+        Swipe swipe=new Swipe(getContext(),recyclerReservas,200,true) {
+            @Override
+            public void instantiateMySwipe(final RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
+
+                buffer.add(new MyButton(ListaReservasAdminFragment.this,
+                        "", 0,
+                        R.drawable.ic_delete, Color.parseColor("#EB073B"),
+                        new ButtomClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+
+                                int id=listaReservas.get(pos).getId();
+
+                                borrarReserva(id);
+                            }
+                        }));
+
+            }
+        };
 
         return view;
     }
 
     private void cargarReservas(){
 
+        int id;
         String cliente,pista,horaInicio,horaFin,fecha;
 
         SQLiteDatabase db=conexionBD.getReadableDatabase();
 
         Reserva reserva;
 
-        Cursor cursor=db.rawQuery("SELECT U.NOMBRE,P.NOMBRE,H.HORA_INICIO,H.HORA_FIN,R.FECHA " +
+        Cursor cursor=db.rawQuery("SELECT R.ID,U.NOMBRE,P.NOMBRE,H.HORA_INICIO,H.HORA_FIN,R.FECHA " +
                 "FROM RESERVAS R,USUARIOS U,PISTAS P,HORARIOS H" +
-                " WHERE R.ID_USUARIO=U.ID AND R.ID_PISTA=P.ID AND R.ID_HORARIO=H.ID",null);
+                " WHERE R.USUARIO=U.ID AND R.PISTA=P.ID AND R.HORARIO=H.ID",null);
 
         while (cursor.moveToNext()){
 
-            cliente=cursor.getString(0);
-            pista=cursor.getString(1);
-            horaInicio=cursor.getString(2);
-            horaFin=cursor.getString(3);
-            fecha=cursor.getString(4);
+            id=cursor.getInt(0);
+            cliente=cursor.getString(1);
+            pista=cursor.getString(2);
+            horaInicio=cursor.getString(3);
+            horaFin=cursor.getString(4);
+            fecha=cursor.getString(5);
 
-            reserva=new Reserva(cliente,pista,horaInicio,horaFin,fecha);
+            reserva=new Reserva(id,cliente,pista,horaInicio,horaFin,fecha);
 
             listaReservas.add(reserva);
 
         }
 
+    }
+
+    private void borrarReserva(int id){
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        sqLiteDatabase.execSQL("DELETE FROM RESERVAS WHERE ID="+id);
+
+        sqLiteDatabase.close();
+
+        listaReservas.remove(posicion);
+        adaptadorReservas.notifyDataSetChanged();
+
+        Toast.makeText(getContext(),"Se ha eliminado la reserva",Toast.LENGTH_SHORT).show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -102,8 +102,32 @@ public class LoginActivity extends AppCompatActivity{
 
             if(esAdmin()){
 
-                intent=new Intent(this,DrawerAdmin.class);
-                startActivity(intent);
+                progressDialog.setMessage("Cargando...");
+                progressDialog.show();
+
+                fireBaseAuth.signInWithEmailAndPassword(email,pass)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if(task.isSuccessful()){
+
+                                    guardarCredenciales();
+
+                                    intent=new Intent(LoginActivity.this,DrawerAdmin.class);
+                                    startActivity(intent);
+
+                                }else {
+
+                                    Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+
+                                }
+
+                                progressDialog.dismiss();
+                            }
+                        });
+
+                guardarCredenciales();
 
             }else{
 
@@ -203,7 +227,7 @@ public class LoginActivity extends AppCompatActivity{
 
         }
 
-        if(codigo.equals("S")){
+        if(codigo!=null && codigo.equals("S")){
 
             esAdmin=true;
         }

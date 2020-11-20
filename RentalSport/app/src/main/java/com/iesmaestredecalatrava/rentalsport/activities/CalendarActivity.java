@@ -116,6 +116,8 @@ public class CalendarActivity extends AppCompatActivity {
 
             }
         });
+
+        Toast.makeText(this,"Pulsa sobre los marcadores para conocer el detalle de la reserva.",Toast.LENGTH_SHORT).show();
     }
 
      private void cargarPreferencias(){

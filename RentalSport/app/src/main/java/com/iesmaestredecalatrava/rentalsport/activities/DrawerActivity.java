@@ -21,6 +21,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,10 +69,13 @@ public class DrawerActivity extends AppCompatActivity implements
     private Intent llamada;
     private static int SOLICITUD_CALL_PHONE=1;
 
-    private FirebaseAuth mAuth;
-
     private EditText destinatario,asunto,mensaje;
     private Button enviarCorreo;
+    private int id;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -80,7 +86,14 @@ public class DrawerActivity extends AppCompatActivity implements
         conexionBD=new ConexionBD(this);
         preferences= PreferenceManager.getDefaultSharedPreferences(this);
 
-        mAuth= FirebaseAuth.getInstance();
+        mAuth= RegistroActivity.getFireBaseAuth();
+        user=FirebaseAuth.getInstance().getCurrentUser();
+
+        sharedPreferences=getSharedPreferences("credenciales", MODE_PRIVATE);
+
+        id=sharedPreferences.getInt("id_usuario",0);
+
+        getDatosUsuario();
 
         try {
             conexionBD.openDataBase();
@@ -139,11 +152,11 @@ public class DrawerActivity extends AppCompatActivity implements
 
                 if(confirmarDatos){
 
-                   actualizarCredeciales();
+                    actualizarCredeciales();
 
                 }else{
 
-                    Toast.makeText(DrawerActivity.this,"No se han guardado los cambios",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DrawerActivity.this,"Debes configurar tus preferencias.",Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -227,16 +240,17 @@ public class DrawerActivity extends AppCompatActivity implements
 
         String email="",telefono="",password="";
         String nuevoEmail,nuevoTelefono,nuevaPassword;
+        boolean emailActualizado=false;
+        boolean passActualizado=false;
 
         SharedPreferences sharedPreferences=getSharedPreferences("credenciales", MODE_PRIVATE);
 
-        int id=sharedPreferences.getInt("id_usuario",0);
+        id=sharedPreferences.getInt("id_usuario",0);
 
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
         Cursor c=sqLiteDatabase.rawQuery("SELECT EMAIL,PASSWORD,TELEFONO " +
                 "FROM USUARIOS WHERE ID="+id,null);
-
 
         while (c.moveToNext()){
 
@@ -250,36 +264,186 @@ public class DrawerActivity extends AppCompatActivity implements
         nuevoTelefono=preferences.getString("telefono",telefono);
         nuevaPassword=preferences.getString("contraseña",password);
 
-        sqLiteDatabase.execSQL("UPDATE USUARIOS SET EMAIL='"+nuevoEmail+"'," +
-                "TELEFONO='"+nuevoTelefono+"'," +
-                "PASSWORD='"+nuevaPassword+"' " +
-                "WHERE ID="+id);
 
+        if(!email.equals(nuevoEmail)){
 
-        crearCuenta(nuevoEmail,nuevaPassword);
+            sqLiteDatabase.execSQL("UPDATE USUARIOS SET EMAIL='"+nuevoEmail+"' WHERE ID="+id);
+
+            cambiarEmail(email,nuevoEmail,password);
+
+            emailActualizado=true;
+
+        }
+
+        if(!password.equals(nuevaPassword)){
+
+            sqLiteDatabase.execSQL("UPDATE USUARIOS SET PASSWORD='"+nuevaPassword+"' WHERE ID="+id);
+
+            cambiarPassword(email,password,nuevaPassword);
+
+            passActualizado=true;
+        }
+
+        if(!telefono.equals(nuevoTelefono)){
+
+            sqLiteDatabase.execSQL("UPDATE USUARIOS SET TELEFONO='"+nuevoTelefono+"' WHERE ID="+id);
+
+        }
+
+        if(!email.equals(nuevoEmail) && !password.equals(nuevaPassword)){
+
+            if (!(emailActualizado && passActualizado)){
+
+                crearNuevaCuenta(nuevoEmail,nuevaPassword);
+
+                borrarCuenta(email,password);
+            }
+
+        }
+
 
     }
 
-    private void crearCuenta(String email,String password){
+    private void cambiarEmail(String email, final String nuevoEmail, String password){
 
-        Toast.makeText(DrawerActivity.this,"Nuevo email: "+email+",Pass: "+password,Toast.LENGTH_SHORT).show();
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(email, password);
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            user.updateEmail(nuevoEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Toast.makeText(DrawerActivity.this,"Se ha actualizado el email",Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        Toast.makeText(DrawerActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        } else {
+
+                            Toast.makeText(DrawerActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void cambiarPassword(String email, String password, final String nuevaPassword){
+
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(email, password);
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            user.updatePassword(nuevaPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Toast.makeText(DrawerActivity.this,"Se ha cambiado la pass",Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        Toast.makeText(DrawerActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        } else {
+
+                            Toast.makeText(DrawerActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+
+    private void crearNuevaCuenta(String email,String password){
+
+        /*Toast.makeText(DrawerActivity.this,"Nuevo email: "+email+",Pass: "+password,Toast.LENGTH_SHORT).show();*/
 
         mAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(DrawerActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
 
-                            Toast.makeText(DrawerActivity.this,"Se ha creado un nuevo usuario",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DrawerActivity.this, "Se ha creado el usuario.", Toast.LENGTH_SHORT).show();
 
                         }else {
 
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
 
+                                Toast.makeText(DrawerActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+
+                                Toast.makeText(DrawerActivity.this, "No se ha podido realizar el registro.", Toast.LENGTH_SHORT).show();
+                            }
 
                         }
+
                     }
                 });
+    }
+
+    private void getDatosUsuario(){
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor c=sqLiteDatabase.rawQuery("SELECT EMAIL,PASSWORD,TELEFONO FROM USUARIOS WHERE ID="+id,null);
+
+        while (c.moveToNext()){
+
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putBoolean("cambiarDatos",false);
+            editor.putString("correo",c.getString(0));
+            editor.putString("contraseña",c.getString(1));
+            editor.putString("telefono",c.getString(2));
+            editor.commit();
+        }
+
+
+
+        sqLiteDatabase.close();
+        c.close();
+    }
+
+    private void borrarCuenta(String email,String password){
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        final AuthCredential credential = EmailAuthProvider
+                .getCredential(email, password);
+
+         user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        user.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+
+                                            Toast.makeText(DrawerActivity.this,"Se ha borrado la cuenta",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+
+                    }
+                });
+
     }
 
 

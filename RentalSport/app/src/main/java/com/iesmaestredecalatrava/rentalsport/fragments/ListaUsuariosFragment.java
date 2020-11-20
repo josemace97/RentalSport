@@ -68,6 +68,7 @@ public class ListaUsuariosFragment extends Fragment {
     private ConexionBD conexionBD;
     private AdaptadorUsuarios adaptadorUsuarios;
     private Bundle bundle;
+    private int posicion;
 
     private int id;
     private String nombre,password,email,tlf;
@@ -127,8 +128,9 @@ public class ListaUsuariosFragment extends Fragment {
         while (c.moveToNext()){
 
             String nombre=c.getString(1);
+            String password=c.getString(3);
 
-            Toast.makeText(getContext(),"Nombre: "+nombre,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Nombre: "+nombre+",pass: "+password,Toast.LENGTH_SHORT).show();
         }
 
         bundle=new Bundle();
@@ -139,17 +141,17 @@ public class ListaUsuariosFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                id=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getId();
+                /*id=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getId();
                 nombre=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getNombre();
                 email=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getEmail();
                 password=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getPassword();
-                tlf=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getTelefono();
+                tlf=listaUsuarios.get(recyclerUsuarios.getChildAdapterPosition(v)).getTelefono();*/
 
-                bundle.putInt("Id",id);
+                /*bundle.putInt("Id",id);
                 bundle.putString("nombre",nombre);
                 bundle.putString("email",email);
                 bundle.putString("password",password);
-                bundle.putString("tlf",tlf);
+                bundle.putString("tlf",tlf);*/
 
 
             }
@@ -161,12 +163,17 @@ public class ListaUsuariosFragment extends Fragment {
 
                 buffer.add(new MyButton(ListaUsuariosFragment.this,
                         "", 0,
-                        R.drawable.ic_delete, Color.parseColor("#33D1FF"),
+                        R.drawable.ic_delete, Color.parseColor("#EB073B"),
                         new ButtomClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                borrarCuenta(email,password);
+
                                 id=listaUsuarios.get(pos).getId();
+                                email=listaUsuarios.get(pos).getEmail();
+                                password=listaUsuarios.get(pos).getPassword();
+
+                                borrarCuenta(email,password);
+                                posicion=pos;
 
                                 borrarUsuario(id);
                             }
@@ -189,6 +196,9 @@ public class ListaUsuariosFragment extends Fragment {
 
         sqLiteDatabase.execSQL("DELETE FROM USUARIOS WHERE ID="+id);
 
+        listaUsuarios.remove(posicion);
+        adaptadorUsuarios.notifyDataSetChanged();
+
         Toast.makeText(getContext(),
                 "Se ha eliminado el usuario "+id,Toast.LENGTH_SHORT).show();
     }
@@ -197,16 +207,27 @@ public class ListaUsuariosFragment extends Fragment {
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        Toast.makeText(getContext(),"Email:"+user.getEmail(),Toast.LENGTH_SHORT).show();
+        if(user.getEmail()!=null){
+
+            Toast.makeText(getContext(),"Email:"+user.getEmail()+" ...",Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            Toast.makeText(getContext(),"Es nulo",Toast.LENGTH_SHORT).show();
+        }
+
+
 
         // Get auth credentials from the user for re-authentication. The example below shows
         // email and password credentials but there are multiple possible providers,
         // such as GoogleAuthProvider or FacebookAuthProvider.
-        AuthCredential credential = EmailAuthProvider
+       final AuthCredential credential = EmailAuthProvider
                 .getCredential(email, password);
 
+        Toast.makeText(getContext(),credential.toString(),Toast.LENGTH_SHORT).show();
+
         // Prompt the user to re-provide their sign-in credentials
-        user.reauthenticate(credential)
+        /*user.reauthenticate(credential)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -221,7 +242,7 @@ public class ListaUsuariosFragment extends Fragment {
                                 });
 
                     }
-                });
+                });*/
     }
 
     private void cargarUsuarios(){

@@ -20,12 +20,23 @@ public class Reserva {
         this.fechaReserva = fechaReserva;
     }
 
+    public Reserva(int id,String cliente, String nombrePista, String horaInicio, String horaFin, String fechaReserva) {
+        this.id=id;
+        this.cliente = cliente;
+        this.nombrePista = nombrePista;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.fechaReserva = fechaReserva;
+    }
+
     public Reserva(String nombrePista,String fechaReserva,byte [] foto){
 
         this.nombrePista=nombrePista;
         this.fechaReserva=fechaReserva;
         this.foto=foto;
     }
+
+    public int getId(){return id;}
 
     public String getCliente() {
         return cliente;

@@ -3,14 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ListaReservasFragment"
-    android:paddingTop="60dp"
-    >
+    android:paddingTop="60dp">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragmentRecyclerReservas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMenuPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="#33FF71"
+        app:fab_icon="@drawable/ic_back"
+        app:fab_size="normal"
+        app:fab_title="Añadir horario"
+        android:layout_marginLeft="325dp"
+        android:layout_marginTop="645dp"/>
 
 </FrameLayout>

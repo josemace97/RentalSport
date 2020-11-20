@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DetallePistaActivity"></activity>
+        <activity android:name=".activities.CuadroModificarPista"></activity>
+        <activity android:name=".activities.DetallePistaActivity" />
         <activity android:name=".activities.MapaActivity" />
         <activity android:name=".activities.RutaActivity" />
         <activity android:name=".activities.Galeria" />

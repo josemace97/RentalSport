@@ -39,6 +39,7 @@ implements View.OnClickListener{
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
 
+        holder.id.setText(String.valueOf(reservas.get(position).getId()));
         holder.cliente.setText(reservas.get(position).getCliente());
         holder.nombrePista.setText(reservas.get(position).getNombrePista());
         holder.horaInicio.setText(reservas.get(position).getHoraInicio());
@@ -58,11 +59,12 @@ implements View.OnClickListener{
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
-        TextView cliente,horaInicio,horaFin,fechaReserva,nombrePista;
+        TextView id,cliente,horaInicio,horaFin,fechaReserva,nombrePista;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
 
+            id=itemView.findViewById(R.id.txtId);
             cliente=itemView.findViewById(R.id.txtCliente);
             nombrePista=itemView.findViewById(R.id.txtInstalacion);
             horaInicio=itemView.findViewById(R.id.txtHoraInicio);

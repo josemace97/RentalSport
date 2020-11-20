@@ -1,5 +1,6 @@
 package com.iesmaestredecalatrava.rentalsport.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -10,8 +11,13 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,20 +28,26 @@ import com.iesmaestredecalatrava.rentalsport.R;
 import com.iesmaestredecalatrava.rentalsport.adaptadores.AdaptadorHorarios;
 import com.iesmaestredecalatrava.rentalsport.modelo.Horario;
 import com.iesmaestredecalatrava.rentalsport.persistencia.ConexionBD;
+import com.iesmaestredecalatrava.rentalsport.swipe.ButtomClickListener;
+import com.iesmaestredecalatrava.rentalsport.swipe.Swipe;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListadoHorariosActivity extends AppCompatActivity {
 
     private Horario horario;
     private ArrayList<Horario> horarios;
+    private AdaptadorHorarios adaptadorHorarios;
     private ConexionBD conexionBD;
     private RecyclerView recyclerView;
     private Bundle bundle;
     private int idUsuario;
     private Intent i;
     private String nombrePista,fechaReserva,horaInicio,horaFin;
+    private SharedPreferences sharedPreferences;
+    private int posicion;
 
     private static final String CHANNEL_ID="NOTIFICACION";
     private static final int NOTIFICACION_ID=0;
@@ -49,6 +61,8 @@ public class ListadoHorariosActivity extends AppCompatActivity {
         horarios =new ArrayList<>();
         recyclerView=findViewById(R.id.RecyclerHorarios);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        sharedPreferences=getSharedPreferences("credenciales",MODE_PRIVATE);
 
         conexionBD=new ConexionBD(this);
 
@@ -67,29 +81,65 @@ public class ListadoHorariosActivity extends AppCompatActivity {
 
         llenarTarifas();
 
-        AdaptadorHorarios adaptadorHorarios=new AdaptadorHorarios(horarios);
+        adaptadorHorarios=new AdaptadorHorarios(horarios);
+
+        if(esAdmin()){
+
+            Swipe swipe=new Swipe(ListadoHorariosActivity.this,recyclerView,200,false) {
+                @Override
+                public void instantiateMySwipe(final RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
+
+                    buffer.add(new MyButton(ListadoHorariosActivity.this,
+                            "Eliminar", 0,
+                            R.drawable.ic_delete, Color.parseColor("#E40000"),
+                            new ButtomClickListener() {
+                                @Override
+                                public void onClick(int pos) {
+
+                                    horaInicio=horarios.get(pos).getHoraInicio();
+                                    horaFin=horarios.get(pos).getHoraFin();
+
+                                    posicion=pos;
+
+                                    eliminarHorario();
+
+                                    Toast.makeText(ListadoHorariosActivity.this,"Se ha deshabilitado el horario",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }));
+
+
+                }
+            };
+        }
+
 
         adaptadorHorarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               horaInicio= horarios.get(recyclerView.getChildAdapterPosition(v)).getHoraInicio();
-               horaFin= horarios.get(recyclerView.getChildAdapterPosition(v)).getHoraFin();
+                if(!esAdmin()){
 
-               bundle.putString("hora_inicio",horaInicio);
-               bundle.putString("hora_fin",horaFin);
-               bundle.putString("nombrePista",nombrePista);
-               bundle.putString("fechaReserva",fechaReserva);
+                    horaInicio= horarios.get(recyclerView.getChildAdapterPosition(v)).getHoraInicio();
+                    horaFin= horarios.get(recyclerView.getChildAdapterPosition(v)).getHoraFin();
 
-                if(!comprobarReserva()){
+                    bundle.putString("hora_inicio",horaInicio);
+                    bundle.putString("hora_fin",horaFin);
+                    bundle.putString("nombrePista",nombrePista);
+                    bundle.putString("fechaReserva",fechaReserva);
 
-                    lanzarNotificacion();
+                    if(!comprobarReserva()){
 
-                }else{
+                        lanzarNotificacion();
 
-                    i=new Intent(ListadoHorariosActivity.this,ReservaActivity.class);
-                    i.putExtras(bundle);
-                    startActivity(i);
+                    }else{
+
+                        i=new Intent(ListadoHorariosActivity.this,ReservaActivity.class);
+                        i.putExtras(bundle);
+                        startActivity(i);
+                    }
+
+
                 }
 
             }
@@ -97,6 +147,31 @@ public class ListadoHorariosActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adaptadorHorarios);
     }
+
+    private void eliminarHorario(){
+
+        int id=0;
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor c=sqLiteDatabase.rawQuery("SELECT H.ID FROM HORARIOS H,PISTAS P " +
+                "WHERE H.PISTA=P.ID AND H.HORA_INICIO='"+horaInicio+"' AND H.HORA_FIN='"+horaFin+"' AND P.NOMBRE='"+nombrePista+"'",null);
+
+        while (c.moveToNext()){
+
+            id=c.getInt(0);
+        }
+
+        sqLiteDatabase.execSQL("DELETE FROM HORARIOS WHERE ID="+id);
+
+        sqLiteDatabase.close();
+
+        horarios.remove(posicion);
+        adaptadorHorarios.notifyDataSetChanged();
+
+    }
+
+
 
     private void llenarTarifas(){
 
@@ -118,23 +193,45 @@ public class ListadoHorariosActivity extends AppCompatActivity {
 
     }
 
+    private boolean esAdmin(){
+
+        boolean administrador=false;
+        int id=sharedPreferences.getInt("id_usuario",0);
+        String admin="";
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT ES_ADMIN FROM USUARIOS WHERE ID="+id,null);
+
+        while (cursor.moveToNext()){
+
+            admin=cursor.getString(0);
+        }
+
+        if(admin!=null && admin.equals("S")){
+
+            administrador=true;
+        }
+
+        return administrador;
+    }
+
     private boolean comprobarReserva(){
 
         boolean continuar=true;
 
+        int horario=getIdHorario();
+
         SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
 
-        Cursor cursor=sqLiteDatabase.rawQuery("SELECT COUNT(*)"+
-                "FROM RESERVAS R,PISTAS P,HORARIOS H"+
-                " WHERE R.PISTA=R.ID AND R.HORARIO=H.ID "+
-                "AND P.NOMBRE='"+nombrePista+"'"+
-                "AND H.HORA_INICIO='"+horaInicio+"'"+
-                "AND H.HORA_FIN='"+horaFin+"'"+
-                "AND R.FECHA='"+fechaReserva+"'",null);
+        Cursor c=sqLiteDatabase.rawQuery("SELECT R.ID"+
+        " FROM RESERVAS R,PISTAS P,HORARIOS H"+
+        " WHERE R.PISTA=P.ID AND R.HORARIO=H.ID"+
+        " AND R.FECHA='"+fechaReserva+"' AND R.HORARIO="+horario,null);
 
-        int numeroReservas=cursor.getCount();
+        int numeroReservas=c.getCount();
 
-        if(numeroReservas>1){
+        if(numeroReservas>=1){
 
             continuar=false;
 
@@ -147,6 +244,24 @@ public class ListadoHorariosActivity extends AppCompatActivity {
 
         createNotification();
         createNotificationChannel();
+
+    }
+
+    private int getIdHorario(){
+
+        int idHorario=0;
+
+        SQLiteDatabase sqLiteDatabase=conexionBD.getReadableDatabase();
+
+        Cursor c=sqLiteDatabase.rawQuery("SELECT H.ID FROM HORARIOS H,PISTAS P" +
+                " WHERE H.PISTA=P.ID AND P.NOMBRE='"+nombrePista+"' AND H.HORA_INICIO='"+horaInicio+"' AND H.HORA_FIN='"+horaFin+"'",null);
+
+        while (c.moveToNext()){
+
+            idHorario=c.getInt(0);
+        }
+
+        return idHorario;
 
     }
 

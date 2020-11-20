@@ -19,7 +19,7 @@
         android:id="@+id/imgPista"
         android:layout_width="210dp"
         android:layout_height="189dp"
-        android:layout_marginLeft="85dp"
+        android:layout_marginLeft="75dp"
         app:srcCompat="@drawable/imagennodisponible" />
 
     <EditText
@@ -29,6 +29,24 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Nombre de la pista:"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Dirección:"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/extension"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Extensión:"
         android:inputType="textEmailAddress" />
 
 
@@ -43,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/circulomorado"
+        android:background="@color/colorPrimary"
         android:text="CARGAR IMAGEN"
         android:textColor="@android:color/white" />
 
@@ -52,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/circulomorado"
+        android:background="@color/colorPrimary"
         android:text="AÑADIR PISTA"
         android:textColor="@android:color/white" />
 

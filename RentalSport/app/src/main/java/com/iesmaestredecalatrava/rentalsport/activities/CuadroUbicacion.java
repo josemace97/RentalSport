@@ -33,7 +33,7 @@ public class CuadroUbicacion extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
-        conexionBD=new ConexionBD(getActivity(),"bd_rentalsport",null,2);
+        conexionBD=new ConexionBD(getContext());
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();
@@ -92,7 +92,7 @@ public class CuadroUbicacion extends DialogFragment {
         contentValues.put("LATITUD",latitud);
         contentValues.put("LONGITUD",longitud);
 
-        db.insert("UBICACION",null,contentValues);
+        db.insert("COORDENADAS",null,contentValues);
 
         Toast.makeText(getActivity(),"Se ha insertado la ubicacion",Toast.LENGTH_SHORT).show();
 
@@ -112,10 +112,10 @@ public class CuadroUbicacion extends DialogFragment {
         ContentValues contentValues=new ContentValues();
 
         contentValues.put("ID",idPista);
-        contentValues.put("ID_PISTA",idPista);
-        contentValues.put("ID_UBICACION",idUbicacion);
+        contentValues.put("PISTA",idPista);
+        contentValues.put("UBICACION",idUbicacion);
 
-        db.insert("UBICACIONES_PISTA",null,contentValues);
+        db.insert("UBICACION_PISTA",null,contentValues);
 
         Toast.makeText(getActivity(),"Se ha insertado la ubicación pista "+nombrePista,Toast.LENGTH_SHORT).show();
     }

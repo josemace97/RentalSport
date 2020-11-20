@@ -135,11 +135,22 @@
                     android:textColor="#000000"
                     android:text="681665852" />
 
+                <ImageView
+                    android:id="@+id/imgIzq"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="215dp"
+                    app:srcCompat="@drawable/ic_chevron_left" />
+
 
             </LinearLayout>
 
 
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 

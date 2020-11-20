@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,6 +21,7 @@ import com.iesmaestredecalatrava.rentalsport.activities.CuadroDeportes;
 import com.iesmaestredecalatrava.rentalsport.activities.CuadroHorarios;
 import com.iesmaestredecalatrava.rentalsport.activities.CuadroPista;
 import com.iesmaestredecalatrava.rentalsport.activities.CuadroUbicacion;
+import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +43,9 @@ public class ListaPistaFragment extends Fragment{
     private FloatingActionButton aniadirUbicacion,aniadirHorario,
             aniadirPista,aniadirDeporte,aniadir;
     private Intent i;
+    private CardView futbol,basket,futsal,tenis,padel;
+    private String deporte;
+    private Bundle bundle;
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,10 +86,25 @@ public class ListaPistaFragment extends Fragment{
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_lista_pista, container, false);
        /* aniadir=v.findViewById(R.id.fabAniadirPista);*/
-        aniadirDeporte=v.findViewById(R.id.fab1);
+
         aniadirUbicacion=v.findViewById(R.id.fab2);
         aniadirPista=v.findViewById(R.id.fab3);
         aniadirHorario=v.findViewById(R.id.fab4);
+
+        futbol=v.findViewById(R.id.futbol);
+        basket=v.findViewById(R.id.basket);
+        futsal=v.findViewById(R.id.futsal);
+        tenis=v.findViewById(R.id.tenis);
+        padel=v.findViewById(R.id.padel);
+
+        /*futbol.setOnClickListener((View.OnClickListener) ListaPistaFragment.this);
+        basket.setOnClickListener((View.OnClickListener) ListaPistaFragment.this);
+        futsal.setOnClickListener((View.OnClickListener) ListaPistaFragment.this);
+        tenis.setOnClickListener((View.OnClickListener) ListaPistaFragment.this);
+        padel.setOnClickListener((View.OnClickListener) ListaPistaFragment.this);*/
+
+
+
 
 
         /*aniadir.setOnClickListener(new View.OnClickListener() {
@@ -95,15 +115,6 @@ public class ListaPistaFragment extends Fragment{
             }
         });*/
 
-        aniadirDeporte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentTransaction fm=getFragmentManager().beginTransaction();
-                CuadroDeportes cuadroDeportes=new CuadroDeportes();
-                cuadroDeportes.show(fm,"tagAlerta");
-            }
-        });
 
         aniadirUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +144,86 @@ public class ListaPistaFragment extends Fragment{
                 FragmentTransaction fm=getFragmentManager().beginTransaction();
                 CuadroHorarios cuadroHorarios=new CuadroHorarios();
                 cuadroHorarios.show(fm,"tagAlerta");
+            }
+        });
+
+        futbol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                bundle=new Bundle();
+
+                deporte="Fútbol";
+
+                bundle.putString("filtroDeporte",deporte);
+
+                i=new Intent(ListaPistaFragment.this.getContext(),ListadoPistasActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        futsal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bundle=new Bundle();
+
+                deporte="Futsal";
+
+                bundle.putString("filtroDeporte",deporte);
+
+                i=new Intent(ListaPistaFragment.this.getContext(),ListadoPistasActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bundle=new Bundle();
+
+                deporte="Basket";
+
+                bundle.putString("filtroDeporte",deporte);
+
+                i=new Intent(ListaPistaFragment.this.getContext(),ListadoPistasActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        tenis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bundle=new Bundle();
+
+                deporte="Tenis";
+
+                bundle.putString("filtroDeporte",deporte);
+
+                i=new Intent(ListaPistaFragment.this.getContext(),ListadoPistasActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        padel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle=new Bundle();
+
+                deporte="Pádel";
+
+                bundle.putString("filtroDeporte",deporte);
+
+                i=new Intent(ListaPistaFragment.this.getContext(),ListadoPistasActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
             }
         });
 

@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iesmaestredecalatrava.rentalsport.activities.ListadoPistasActivity;
+import com.iesmaestredecalatrava.rentalsport.fragments.ListaReservasAdminFragment;
 import com.iesmaestredecalatrava.rentalsport.fragments.ListaReservasFragment;
 import com.iesmaestredecalatrava.rentalsport.fragments.ListaUsuariosFragment;
 
@@ -156,6 +157,7 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
         private Resources recursos;
         private ListaUsuariosFragment listaUsuariosFragment;
         private ListaReservasFragment listaReservasFragment;
+        private ListaReservasAdminFragment listaReservasAdminFragment;
 
         public MyButton(Context context,String texto,int tamanioTexto,int imagenId,int color,ButtomClickListener listener) {
             this.texto = texto;
@@ -176,6 +178,17 @@ public abstract class Swipe extends ItemTouchHelper.SimpleCallback {
             this.listener = listener;
             this.listaUsuariosFragment = listaUsuariosFragment;
             this.recursos = listaUsuariosFragment.getResources();
+        }
+
+        public MyButton(ListaReservasAdminFragment listaReservasFragment, String texto, int tamanioTexto, int ic_delete, int color, ButtomClickListener listener) {
+
+            this.texto = texto;
+            this.imagenId = ic_delete;
+            this.tamanioTexto = tamanioTexto;
+            this.color = color;
+            this.listener = listener;
+            this.listaReservasAdminFragment = listaReservasFragment;
+            this.recursos = listaReservasFragment.getResources();
         }
 
         public MyButton(ListaReservasFragment listaReservasFragment, String texto, int tamanioTexto, int ic_delete, int color, ButtomClickListener listener) {

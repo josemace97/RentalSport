@@ -33,7 +33,7 @@ public class CuadroHorarios extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
-        conexionBD=new ConexionBD(getActivity(),"bd_rentalsport",null,2);
+        conexionBD=new ConexionBD(getContext());
         datos=new ArrayList<String>();
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
@@ -172,8 +172,8 @@ public class CuadroHorarios extends DialogFragment {
 
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put("ID_PISTA",idPista);
-        contentValues.put("ID_DEPORTE",deporte);
+        contentValues.put("PISTA",idPista);
+        contentValues.put("DEPORTE",deporte);
         contentValues.put("HORA_INICIO",horaInicio);
         contentValues.put("HORA_FIN",horaFin);
         contentValues.put("PRECIO",precio);

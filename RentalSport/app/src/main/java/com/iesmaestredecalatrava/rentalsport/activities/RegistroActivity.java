@@ -1,10 +1,12 @@
 package com.iesmaestredecalatrava.rentalsport.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +26,7 @@ import java.io.IOException;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    private static FirebaseAuth fireBaseAuth;
+    private static FirebaseAuth fireBaseAuth=FirebaseAuth.getInstance();
 
     private EditText txtNombre,txtEmail,txtPass,txtPassRepetida,txtTelefono;
     private String nombre,email,pass,telefono;
@@ -35,8 +37,6 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
-        fireBaseAuth=FirebaseAuth.getInstance();
 
         txtNombre=findViewById(R.id.editTextNombre);
         txtEmail=findViewById(R.id.editTextEmail);
@@ -90,6 +90,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 Toast.makeText(RegistroActivity.this,"¡Bienvenido a RentalSport "+txtNombre.getText().toString()+"!",Toast.LENGTH_SHORT).show();
                                 insertarUsuarioDB(nombre,email,pass,telefono);
 
+
                             }else {
 
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -119,15 +120,11 @@ public class RegistroActivity extends AppCompatActivity {
 
        db.execSQL(insertarUsuario);
 
-       Toast.makeText(this,"Se ha insertado el usuario en la BD",Toast.LENGTH_SHORT).show();
-
     }
 
     public static FirebaseAuth getFireBaseAuth(){
 
         return fireBaseAuth;
-
     }
-
 
 }
