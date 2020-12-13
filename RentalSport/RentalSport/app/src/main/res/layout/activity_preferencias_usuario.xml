@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DetalleReservaActivity"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <EditText
+        android:id="@+id/edNombreUsuario"
+        android:layout_width="337dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="333dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+
+    <EditText
+        android:id="@+id/edtTelefono"
+        android:layout_width="325dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <Button
+        android:id="@+id/configurarPreferencias"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="#33FF71"
+        android:layout_marginTop="10dp"
+        android:text="CONFIGURAR PREFERENCIAS"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756" />
+
+    <Button
+        android:id="@+id/guardarPreferencias"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="#33FF71"
+        android:layout_marginTop="10dp"
+        android:text="CONFIRMAR CAMBIOS"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756" />
+
+
+
+
+</LinearLayout>

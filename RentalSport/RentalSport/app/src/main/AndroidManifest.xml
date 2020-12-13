@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.iesmaestredecalatrava.rentalsport">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.CuadroModificarPista"></activity>
+        <activity android:name=".activities.DetallePistaActivity" />
+        <activity android:name=".activities.RutaActivity" />
+        <activity android:name=".activities.Galeria" />
+        <activity android:name=".activities.PreciosActivity" />
+        <activity android:name=".activities.CalendarActivity" />
+        <activity android:name=".activities.DetalleReservaActivity" />
+        <activity android:name=".activities.PreferenciasActivity" />
+        <activity
+            android:name=".activities.ReservaActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="" />
+        <activity android:name=".activities.ListadoHorariosActivity" />
+        <activity android:name=".activities.HorariosActivity" />
+        <activity android:name=".activities.AniadirPistaActivity" />
+        <activity android:name=".activities.ModificarUsrAdmin" />
+        <activity android:name=".activities.RecintosActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activities.ListadoUsuarios" />
+        <activity android:name=".adaptadores.AdaptadorUsuarios" />
+        <activity
+            android:name=".activities.DrawerAdmin"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.BuscadorActivity"
+            android:parentActivityName=".activities.MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iesmaestredecalatrava.rentalsport.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.DrawerActivity"
+            android:parentActivityName=".activities.ReservaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ReservaActivity" />
+        </activity>
+        <activity android:name=".activities.AcercaDeActivity" />
+        <activity android:name=".activities.DeportesActivity" />
+        <activity android:name=".activities.PistasActivity" />
+        <activity android:name=".activities.ListadoPistasActivity" />
+        <activity android:name=".activities.AyudaActivity" />
+        <activity
+            android:name=".activities.RegistroActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

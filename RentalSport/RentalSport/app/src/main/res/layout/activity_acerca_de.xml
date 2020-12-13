@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DetalleReservaActivity"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <ImageView
+        android:id="@+id/imgIcono"
+        android:layout_width="244dp"
+        android:layout_height="198dp"
+        android:layout_marginLeft="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        app:srcCompat="@drawable/imagennodisponible" />
+
+    
+
+    <EditText
+        android:id="@+id/edProgramador"
+        android:layout_width="329dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Programador:"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+
+    <TextView
+        android:id="@+id/edContacto"
+        android:layout_width="331dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="Contacto:"
+        android:inputType="textPersonName"
+        android:paddingTop="12dp"
+        android:textAlignment="center"
+        android:textColor="#0A00E4"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
+
+    <EditText
+        android:id="@+id/edVersion"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:drawablePadding="12dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Version:"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <TextView
+        android:id="@+id/edCodigoFuente"
+        android:layout_width="338dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:hint="Código fuente:"
+        android:inputType="textPersonName"
+        android:paddingTop="12dp"
+        android:textAlignment="center"
+        android:textColor="#0A00E4"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <EditText
+        android:id="@+id/edOrganizacion"
+        android:layout_width="334dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_editext"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Organización:"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+
+
+</LinearLayout>

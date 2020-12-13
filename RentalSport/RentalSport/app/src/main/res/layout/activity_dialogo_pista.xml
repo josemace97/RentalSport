@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="NUEVA PISTA"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgPista"
+        android:layout_width="210dp"
+        android:layout_height="189dp"
+        android:layout_marginLeft="75dp"
+        app:srcCompat="@drawable/imagennodisponible" />
+
+    <EditText
+        android:id="@+id/nombrepista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Nombre de la pista:"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Dirección:"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/extension"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Extensión:"
+        android:inputType="textEmailAddress" />
+
+
+    <Spinner
+        android:id="@+id/spinnerDeportes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/btnCargarImagen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="CARGAR IMAGEN"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnAniadirPista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="AÑADIR PISTA"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Cuenta" >
+        <menu>
+            <item android:id="@+id/reservas"
+                android:title="Reservas"
+                android:icon="@drawable/ic_reservas"
+                android:iconTint="#000000">
+
+            </item>
+            <item android:id="@+id/preferencias"
+                android:title="Preferencias"
+                android:icon="@drawable/ic_preferencias"
+                android:iconTint="#000000">
+
+            </item>
+
+        </menu>
+    </item>
+
+    <item android:title="Comunicación" >
+        <menu>
+            <item android:id="@+id/paginaWeb"
+                android:icon="@drawable/ic_paginaweb"
+                android:title="Página web"
+                android:iconTint="#000000"
+                >
+
+            </item>
+            <item android:id="@+id/envio"
+                android:title="Enviar"
+                android:icon="@drawable/ic_send"
+                android:iconTint="#000000">
+
+            </item>
+            <item android:id="@+id/telefono"
+                android:title="Concejalía"
+                android:icon="@drawable/ic_telefono"
+                android:iconTint="#000000">
+
+            </item>
+        </menu>
+    </item>
+
+    <item android:title="Información" >
+        <menu>
+            <item android:id="@+id/informacion"
+                android:title="Sobre nosotros"
+                android:icon="@drawable/ic_info"
+                android:iconTint="#000000">
+
+            </item>
+        </menu>
+    </item>
+
+
+</menu>

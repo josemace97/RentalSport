@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imgPista"
+        android:layout_width="210dp"
+        android:layout_height="189dp"
+        android:layout_marginLeft="85dp"
+        app:srcCompat="@drawable/imagennodisponible" />
+
+    <EditText
+        android:id="@+id/nombrepista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:background="@drawable/custom_editext"
+        android:hint="Nombre de la pista:"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="Dirección:"
+        android:background="@drawable/custom_editext"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/extension"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:background="@drawable/custom_editext"
+        android:hint="Extensión:"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress" />
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="150dp"
+        app:fab_colorNormal="#33FF71"
+        app:fab_icon="@drawable/ic_actualziar"
+        app:fab_size="normal"
+        app:fab_title="Modificar datos de la pista" />
+
+</LinearLayout>

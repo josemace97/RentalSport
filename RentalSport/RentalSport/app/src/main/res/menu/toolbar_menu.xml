@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/datepicker"
+        android:title="Calendario"
+        android:icon="@drawable/ic_calendario"
+        app:showAsAction="always">
+
+    </item>
+
+    <item
+        android:id="@+id/buscador"
+        android:title="Buscador"
+        android:icon="@drawable/ic_buscador"
+        app:showAsAction="always">
+
+    </item>
+
+</menu>
